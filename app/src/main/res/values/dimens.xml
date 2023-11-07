@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_spacing">4dp</dimen>
+    <dimen name="posts_avatar_size">48dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+
+</resources>

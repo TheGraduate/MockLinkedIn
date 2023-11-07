@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<item
+        android:id="@+id/spacer"
+        android:title=""
+        app:showAsAction="always"
+        android:orderInCategory="2"
+
+        />-->
+   <!-- <item
+        android:id="@+id/action_profile"
+        android:title="@string/profile_button"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="1"
+        android:icon="@drawable/baseline_account_circle_24"
+
+       />
+-->
+    <item
+        android:id="@+id/new_post"
+        android:title="@string/newpost"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="2"
+        android:icon="@drawable/baseline_add_comment_24"
+
+        />
+   <!--<item
+       android:id="@+id/back"
+       android:title="@string/back"
+       app:showAsAction="ifRoom" />-->
+
+</menu>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name" translatable="false">MockLinkedIn</string>
+    <string name="profile_button">Profile</string>
+    <string name="description_post_like">Like</string>
+    <string name="description_post_share">Share</string>
+    <string name="description_post_author_avatar">Post author avatar</string>
+    <string name="description_post_menu">Post menu</string>
+    <string name="description_post_view">Views</string>
+    <string name="description_post_save">Save</string>
+    <string name="menu_remove">Remove</string>
+    <string name="post_text">Your message</string>
+    <string name="menu_edit">Edit</string>
+    <string name="error_empty_content">Content can\'t be empty</string>
+    <string name="ic_menu_close_clear_cancel">Cancel</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="profile">Profile</string>
+    <string name="newpost">New Post</string>
+    <string name="back">Back</string>
+    <string name="enter_your_post_content">Enter your post content</string>
+    <string name="post">Post</string>
+    <string name="hello_blank_fragment1" translatable="false">Hello blank fragment 1</string>
+    <string name="hello_blank_fragment2" translatable="false">Hello blank fragment 2</string>
+</resources>

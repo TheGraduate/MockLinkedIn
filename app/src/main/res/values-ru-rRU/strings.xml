@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MockLinkedIn</string>
+    <string name="profile_button">Профиль</string>
+    <string name="description_post_author_avatar">Аватар автора поста</string>
+    <string name="description_post_menu">Меню поста</string>
+    <string name="description_post_like">Нравится</string>
+    <string name="description_post_share">Поделиться</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="description_post_view">Просмотры</string>
+    <string name="menu_edit">Изменить</string>
+    <string name="menu_remove">Удалить</string>
+    <string name="post_text">Ваше сообщение</string>
+    <string name="ic_menu_close_clear_cancel">Отмена</string>
+    <string name="error_empty_content">Строка не может быть пустой</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="profile">Профиль</string>
+    <string name="newpost">Новый пост</string>
+    <string name="back">Назад</string>
+    <string name="enter_your_post_content">Ваш пост</string>
+    <string name="post">Запостить</string>
+</resources>
