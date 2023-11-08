@@ -111,7 +111,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         }
 
             // todo при нажатии на кнопку FeedFragment в bottomNavigationView приложение крашится, также
-            //  естественно крашится при нажатии на верхние кнопки, если фрагмент на экране(и в bottomNavigationView) не FeedFragment
+            //   крашится при нажатии на верхние кнопки, если фрагмент на экране(и в bottomNavigationView) не FeedFragment
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu)
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
