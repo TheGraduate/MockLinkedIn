@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_item1"
-        android:icon="@drawable/baseline_add_comment_24"
-        android:title="Item 1"
+        android:id="@+id/menu_item_feed"
+        android:icon="@drawable/baseline_house_48"
+        android:title="@string/feed"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_item2"
-        android:icon="@drawable/baseline_add_comment_24"
-        android:title="Item 2"
+        android:id="@+id/menu_item_events"
+        android:icon="@drawable/baseline_event_note_48"
+        android:title="@string/events"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_item3"
-        android:icon="@drawable/baseline_add_comment_24"
-        android:title="Item 2"
+        android:id="@+id/menu_item_users"
+        android:icon="@drawable/baseline_people_48"
+        android:title="@string/users"
         app:showAsAction="ifRoom" />
 
 </menu>

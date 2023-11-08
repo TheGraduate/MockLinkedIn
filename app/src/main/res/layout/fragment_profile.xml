@@ -1,37 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.ProfileFragment">
 
-    <TextView
-        android:id="@+id/textViewUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Имя пользователя"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+tools:context=".activity.ProfileFragment">
 
-    <EditText
-        android:id="@+id/editTextUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+    <LinearLayout
+        android:layout_width="383dp"
+        android:layout_height="174dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="163dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/user_avatar"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_account_box_24" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/changeAvatarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Сохранить"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUserName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="@string/change_avatar" />
+
+    <TextView
+        android:id="@+id/firstNameString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/firstNameString" />
+
+    <EditText
+    android:id="@+id/firstNameEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/first_name"
+    android:inputType="text" />
+
+    <TextView
+        android:id="@+id/lastNameString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lastNameString" />
+
+    <EditText
+    android:id="@+id/lastNameEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/last_name"
+    android:inputType="text" />
+
+    <TextView
+        android:id="@+id/userNameString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nickNameString" />
+
+    <EditText
+    android:id="@+id/usernameEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/username"
+    android:inputType="text" />
+
+    <TextView
+        android:id="@+id/birthDateString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/birthDateString" />
+
+    <EditText
+    android:id="@+id/birthDateEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/birth_date"
+    android:inputType="date" />
+
+    <Button
+    android:id="@+id/saveChangesButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/save_changes" />
+
+</LinearLayout>

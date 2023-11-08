@@ -56,16 +56,6 @@
         android:label="NewPostFragment"
         tools:layout="@layout/fragment_new_post"/>
     <fragment
-        android:id="@+id/blankFragment1"
-        android:name="com.example.mocklinkedin.activity.BlankFragment1"
-        android:label="fragment_blank1"
-        tools:layout="@layout/fragment_blank1" />
-    <fragment
-        android:id="@+id/blankFragment2"
-        android:name="com.example.mocklinkedin.activity.BlankFragment2"
-        android:label="fragment_blank2"
-        tools:layout="@layout/fragment_blank2" />
-    <fragment
         android:id="@+id/editPostFragment"
         android:name="com.example.mocklinkedin.activity.EditPostFragment"
         android:label="EditPostFragment"
@@ -74,4 +64,12 @@
         android:id="@+id/appActivity"
         android:name="com.example.mocklinkedin.activity.AppActivity"
         android:label="AppActivity" />
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.example.mocklinkedin.activity.EventsFragment"
+        android:label="EventsFragment" />
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:name="com.example.mocklinkedin.activity.UsersListFragment"
+        android:label="UsersListFragment" />
 </navigation>

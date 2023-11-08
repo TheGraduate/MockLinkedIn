@@ -20,4 +20,24 @@
     <string name="post">Post</string>
     <string name="hello_blank_fragment1" translatable="false">Hello blank fragment 1</string>
     <string name="hello_blank_fragment2" translatable="false">Hello blank fragment 2</string>
+    <string name="feed">Feed</string>
+    <string name="events">Events</string>
+    <string name="users">Users</string>
+    <string name="description_take_photo">Take photo</string>
+    <string name="description_select_photo">Select photo</string>
+    <string name="remove">Remove</string>
+    <string name="description_photo">Photo</string>
+    <string name="menu_save">Save</string>
+    <string name="user_avatar">User Avatar</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="username">Username</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="registration_date">Registration Date</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="firstNameString">Name</string>
+    <string name="lastNameString">Lastname</string>
+    <string name="nickNameString">Nickname</string>
+    <string name="birthDateString">Birth date</string>
 </resources>

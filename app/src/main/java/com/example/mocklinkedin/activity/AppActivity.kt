@@ -6,21 +6,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintSet.Layout
-import androidx.core.view.doOnDetach
-import androidx.core.view.isVisible
-import androidx.navigation.NavController
+
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.viewpager2.widget.ViewPager2
+
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.activity.NewPostFragment.Companion.textArg
-import com.example.mocklinkedin.databinding.ActivityAppBinding
-import com.example.mocklinkedin.databinding.CustomToolbarBinding
-import com.example.mocklinkedin.databinding.FragmentFeedBinding
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -28,18 +20,28 @@ import com.google.android.material.tabs.TabLayoutMediator
 //import com.example.mocklinkedin.adapter.DemoCollectionAdapter
 
 class AppActivity : AppCompatActivity(R.layout.activity_app) {
-    //private lateinit var customToolbar: Toolbar
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //invalidateOptionsMenu()// обновление меню
-        //setContentView(R.layout.activity_app)
-        //customToolbar = findViewById<Toolbar>(R.id.toolbar)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
+        navController.graph = navGraph
 
-        setSupportActionBar(/*customToolbar*/findViewById(R.id.toolbar))//устанавливает кастомный тулбар в качестве actionbar(без этого не будет работать встроенная кнопка назад)
-        supportActionBar?.setDisplayShowTitleEnabled(false)//Выключение названия приложения в action bar
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)// Включение кнопки "назад"
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.feedFragment , R.id.eventsFragment, R.id.usersListFragment -> {
+                    showBottomNavigationBar()
+                }
+                else -> {
+                    hideBottomNavigationBar()
+                }
+            }
+        }
+
+        setSupportActionBar(/*customToolbar*/findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val profileButton = findViewById<ImageView>(R.id.profile)
         val newPostButton = findViewById<ImageView>(R.id.newpost)
@@ -55,7 +57,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 1 -> tab.text = "Tab 2"
                 2 -> tab.text = "Tab 3"
             }
-        }.attach()*/ // todo view pager
+        }.attach()*/
 
 
        fun hideButtons() {
@@ -108,37 +110,49 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             )
         }
 
-
-        /*val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            // todo при нажатии на кнопку FeedFragment в bottomNavigationView приложение крашится, также
+            //  естественно крашится при нажатии на верхние кнопки, если фрагмент на экране(и в bottomNavigationView) не FeedFragment
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu)
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.menu_item1 -> {
-                    // Замените текущий фрагмент на фрагмент, связанный с пунктом 1
-                    val fragment = BlankFragment1()
+                R.id.menu_item_feed -> {
+                    val fragment = FeedFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment, fragment)
                         .commit()
                     return@setOnItemSelectedListener true
                 }
-                R.id.menu_item2 -> {
-                    // Замените текущий фрагмент на фрагмент, связанный с пунктом 2
-                    val fragment = BlankFragment2()
+                R.id.menu_item_events -> {
+                    val fragment = EventsFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.nav_host_fragment, fragment)
                         .commit()
                     return@setOnItemSelectedListener true
                 }
-                // Добавьте обработку других пунктов меню по мере необходимости
+                R.id.menu_item_users -> {
+                    val fragment = UsersListFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment, fragment)
+                        .commit()
+                    return@setOnItemSelectedListener true
+                }
                 else -> return@setOnItemSelectedListener false
             }
-        }*/
+        }
+    }
 
+    private fun showBottomNavigationBar() {
+        // Отобразить BottomNavigationBar, например, установить видимость на VISIBLE
+        findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu).visibility = View.VISIBLE
+        //include_bottom_navigation_menu.visibility = View.VISIBLE
+    }
 
+    private fun hideBottomNavigationBar() {
+        findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu).visibility = View.GONE
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.post_list_menu, menu)
-
         return true
     }*/
 
@@ -152,12 +166,6 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 //findViewById<TabLayout>(R.id.tabLayout).visibility = TabLayout.VISIBLE
                 return true
             }
-           /* R.id.remove -> {
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                findViewById<ImageView>(R.id.profile).visibility = View.VISIBLE
-                findViewById<ImageView>(R.id.newpost).visibility = View.VISIBLE
-                return true
-            }*/
             else -> return super.onOptionsItemSelected(item)
         }
     }

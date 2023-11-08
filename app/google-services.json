@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:680963046735:android:b55ad2bef0476f5b68193a",
         "android_client_info": {
-          "package_name": "ru.netology.nmedia"
+          "package_name": "com.example.mockLinkedIn"
         }
       },
       "oauth_client": [

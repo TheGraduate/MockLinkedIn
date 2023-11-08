@@ -3,32 +3,24 @@ package com.example.mocklinkedin.activity
 import android.os.Bundle
 import android.view.View
 import com.example.mocklinkedin.R
-import android.widget.Toast
 import com.example.mocklinkedin.adapter.OnInteractionListener
-import com.example.mocklinkedin.post.Post
+import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.adapter.PostsAdapter
-import com.example.mocklinkedin.util.AndroidUtils
 import com.example.mocklinkedin.viewmodel.PostViewModel
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
-//import com.example.mocklinkedin.adapter.DemoCollectionAdapter
 import com.example.mocklinkedin.databinding.FragmentFeedBinding
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 class FeedFragment : Fragment() {
 
     private val viewModel: PostViewModel by viewModels(
-        ownerProducer = ::requireParentFragment/*{ requireActivity() }*/ // если поменять на requireActivity посты не будут сразу после написания
+        ownerProducer = ::requireParentFragment /* { requireActivity() } */ // если поменять на requireActivity посты не будут сразу после написания
     )
 
     override fun onCreateView (
@@ -64,14 +56,10 @@ class FeedFragment : Fragment() {
             }
 
             override fun onPost(post: Post) {
-                /*val activity2 = activity as? AppActivity
-                activity2?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-                activity2?.findViewById<ImageView>(R.id.newpost)?.visibility = View.GONE*/
                 val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
                 val action = FeedFragmentDirections.actionFeedFragmentToPostFragment(post.id.toInt())
                 findNavController().navigate(action)
                 actionBar?.setDisplayHomeAsUpEnabled(true)
-
             }
 
             override fun onShare(post: Post) {
@@ -107,28 +95,12 @@ class FeedFragment : Fragment() {
             if (post.id == 0L) {
                 return@observe
             }
-            //if (activity is AppActivity) {
-              /*  showMessageMenu()
-                with(binding.content) {
-                    requestFocus()
-                    setText(post.content)
-                }*/
-           // }
 
-                val sendPostText = Bundle()
-                sendPostText.putString(Intent.EXTRA_TEXT, post.content)
-
+            val sendPostText = Bundle()
+            sendPostText.putString(Intent.EXTRA_TEXT, post.content)
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
             activity?.findViewById<ImageView>(R.id.newpost)?.visibility = View.GONE
-            //val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-            //actionBar?.setDisplayHomeAsUpEnabled(false)
-            /*val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-            actionBar?.setDisplayHomeAsUpEnabled(true)*/
-
-           /* val destinationFragment = EditPostFragment()
-            destinationFragment.arguments = sendPostText*/
             findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, sendPostText)
-
         }
 
        /* binding.root.setOnClickListener {

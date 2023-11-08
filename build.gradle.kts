@@ -4,15 +4,16 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        //maven (url = "https://jitpack.io")
     }
 
     dependencies {
-        val nav_version = "2.7.4"
+        val nav_version = "2.7.5"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
         classpath ("com.android.tools.build:bundletool:1.14.1")
         classpath ("com.android.tools.build:gradle:8.1.2")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
-        classpath ("com.google.gms:google-services:4.4.0")
+        //classpath ("com.google.gms:google-services:4.4.0")
 
     }
 }

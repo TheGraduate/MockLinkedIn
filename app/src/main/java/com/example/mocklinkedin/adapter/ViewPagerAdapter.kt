@@ -1,11 +1,12 @@
 package com.example.mocklinkedin.adapter
 
+//todo попытаться сделать viewPager?
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.mocklinkedin.activity.BlankFragment1
-import com.example.mocklinkedin.activity.BlankFragment2
+//import com.example.mocklinkedin.activity.BlankFragment1
+//import com.example.mocklinkedin.activity.BlankFragment2
 import com.example.mocklinkedin.activity.FeedFragment
 
 /*class ViewPagerAdapter(

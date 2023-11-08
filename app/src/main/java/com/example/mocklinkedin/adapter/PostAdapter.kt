@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import com.example.mocklinkedin.databinding.CardPostBinding
 import android.widget.PopupMenu
-import com.example.mocklinkedin.post.Post
+import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.util.CalculateParametrs
 
@@ -45,16 +45,9 @@ class PostViewHolder(
             like.isChecked = post.likedByMe
             like.text = "${post.likes}"
             share.text = "${post.shares}"
-
             like.text = CalculateParametrs(post.likes)
             share.text = CalculateParametrs(post.shares)
             viewCount.text = CalculateParametrs(post.views)
-
-            /*if (post.likedByMe) {
-                like.setImageResource(R.drawable.ic_baseline_favorited_24)
-            } else {
-                like.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }*/
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -85,6 +78,15 @@ class PostViewHolder(
             root.setOnClickListener {
                 onInteractionListener.onPost(post)
             }
+
+           /* val url = "http://10.0.2.2:9999/avatars/{name}"
+            Glide.with(binding.avatar)
+                .load(url)
+                .circleCrop()
+                //.placeholder(R.drawable.ic_loading_100dp)
+                //.error(R.drawable.ic_error_100dp)
+                .timeout(10_000)
+                .into(binding.avatar)*/
         }
     }
 }

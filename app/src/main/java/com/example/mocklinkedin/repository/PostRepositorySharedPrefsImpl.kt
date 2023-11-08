@@ -3,9 +3,12 @@ package com.example.mocklinkedin.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mocklinkedin.enumeration.AttachmentType
+import com.example.mocklinkedin.dto.Attachment
+import com.example.mocklinkedin.dto.MediaUpload
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.example.mocklinkedin.post.Post
+import com.example.mocklinkedin.dto.Post
 
 class PostRepositorySharedPrefsImpl(
     context: Context,
@@ -23,8 +26,6 @@ class PostRepositorySharedPrefsImpl(
             posts = gson.fromJson(it, type)
             nextId = posts.maxByOrNull { it.id }?.id?.plus(1) ?: 1L
             data.value = posts
-            /*posts = gson.fromJson(it, type)
-            data.value = posts*/
         }
     }
 
@@ -66,6 +67,19 @@ class PostRepositorySharedPrefsImpl(
         data.value = posts
         sync()
     }
+
+    override fun saveWithAttachment(post: Post, upload: MediaUpload) {
+        //val media = upload(upload)
+        val postWithAttachment = post.copy(attachment = Attachment(AttachmentType.IMAGE))
+        save(postWithAttachment)
+    }
+
+/*    override fun upload(upload: MediaUpload): Media {
+        val media = MultipartBody.Part.createFormData(
+            "file", upload.file.name, upload.file.asRequestBody()
+        )
+
+    }*/
 
     override fun shareById(id: Long) {
         posts = posts.map {

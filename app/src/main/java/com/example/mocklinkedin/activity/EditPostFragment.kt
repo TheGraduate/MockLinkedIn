@@ -15,7 +15,6 @@ import com.example.mocklinkedin.databinding.FragmentEditPostBinding
 import com.example.mocklinkedin.viewmodel.PostViewModel
 import com.example.mocklinkedin.util.AndroidUtils
 import com.example.mocklinkedin.util.StringArg
-//import com.example.mocklinkedin.databinding.FragmentEditPostBinding
 
 class EditPostFragment: Fragment() {
 
@@ -42,7 +41,6 @@ class EditPostFragment: Fragment() {
         binding.edit.setText(arg1Value)
 
         binding.ok.setOnClickListener {
-
             viewModel.changeContent(binding.edit.text.toString())
             viewModel.save()
             AndroidUtils.hideKeyboard(requireView())
@@ -53,7 +51,6 @@ class EditPostFragment: Fragment() {
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
             activity?.findViewById<ImageView>(R.id.newpost)?.visibility = View.VISIBLE
         }
-
         return binding.root
     }
 }
