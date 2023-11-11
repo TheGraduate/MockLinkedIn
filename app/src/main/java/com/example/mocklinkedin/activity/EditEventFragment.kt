@@ -11,18 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
+import com.example.mocklinkedin.databinding.FragmentEditEventBinding
 import com.example.mocklinkedin.databinding.FragmentEditPostBinding
-import com.example.mocklinkedin.viewmodel.PostViewModel
 import com.example.mocklinkedin.util.AndroidUtils
 import com.example.mocklinkedin.util.StringArg
+import com.example.mocklinkedin.viewmodel.EventViewModel
+import com.example.mocklinkedin.viewmodel.PostViewModel
 
-class EditPostFragment: Fragment() {
+class EditEventFragment: Fragment() {
 
     companion object {
         var Bundle.textArg: String? by StringArg
     }
 
-    private val viewModel: PostViewModel by viewModels(
+    private val viewModel: EventViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
@@ -31,7 +33,7 @@ class EditPostFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) : View {
-        val binding = FragmentEditPostBinding.inflate(
+        val binding = FragmentEditEventBinding.inflate(
             inflater,
             container,
             false
@@ -41,8 +43,8 @@ class EditPostFragment: Fragment() {
         binding.edit.setText(arg1Value)
 
         binding.ok.setOnClickListener {
-            viewModel.changeContent(binding.edit.text.toString())
-            viewModel.save()
+            viewModel.changeEventContent(binding.edit.text.toString())
+            viewModel.saveEvent()
             AndroidUtils.hideKeyboard(requireView())
             findNavController().navigateUp()
             val actionBar = (requireActivity() as AppCompatActivity).supportActionBar

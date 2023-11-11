@@ -40,4 +40,14 @@
     <string name="lastNameString">Lastname</string>
     <string name="nickNameString">Nickname</string>
     <string name="birthDateString">Birth date</string>
+    <string name="registrationSuggestion">Don\'t you have an account? You can register here.</string>
+    <string name="registration">Registration</string>
+    <string name="loginTitle">Login</string>
+    <string name="registrationTitle">Registration</string>
+    <string name="loginHint">Login</string>
+    <string name="passwordHint">Password</string>
+    <string name="enterButton">Enter</string>
+    <string name="name">Name</string>
+    <string name="lastName">Lastname</string>
+    <string name="existUser">User not found</string>
 </resources>

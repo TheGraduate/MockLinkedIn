@@ -2,14 +2,10 @@ package com.example.mocklinkedin.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.content.RestrictionsManager.RESULT_ERROR
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -17,31 +13,29 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toFile
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.databinding.FragmentNewPostBinding
+import com.example.mocklinkedin.databinding.FragmentNewEventBinding
 import com.example.mocklinkedin.util.AndroidUtils
 import com.example.mocklinkedin.util.StringArg
+import com.example.mocklinkedin.viewmodel.EventViewModel
 import com.example.mocklinkedin.viewmodel.PostViewModel
-//import com.google.android.gms.cast.framework.media.ImagePicker
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 
-class NewPostFragment : Fragment()  {
+class NewEventFragment: Fragment() {
+
     companion object {
         var Bundle.textArg: String? by StringArg
     }
 
-    private val viewModel: PostViewModel by viewModels(
+    private val viewModel: EventViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
-    private var fragmentBinding: FragmentNewPostBinding? = null
+    private var fragmentBinding: FragmentNewEventBinding? = null
 
     private lateinit var pickPhotoLauncher: ActivityResultLauncher<Intent>
     private lateinit var takePhotoLauncher: ActivityResultLauncher<Intent>
@@ -51,7 +45,7 @@ class NewPostFragment : Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentNewPostBinding.inflate(
+        val binding = FragmentNewEventBinding.inflate(
             inflater,
             container,
             false
@@ -62,27 +56,10 @@ class NewPostFragment : Fragment()  {
             ?.let(binding.edit::setText)
         binding.edit.requestFocus()
 
-        /*val pickPhotoLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                when (it.resultCode) {
-                    RESULT_ERROR -> {
-                        Snackbar.make(
-                            binding.root,
-                            "Error",
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-                    Activity.RESULT_OK -> {
-                        val uri: Uri? = it.data?.data
-                        viewModel.changePhoto(uri, uri?.toFile())
-                    }
-                }
-            }*/
-
         takePhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri: Uri? = result.data?.data
-                viewModel.changePhoto(uri, uri?.toFile())
+                viewModel.changeEventPhoto(uri, uri?.toFile())
 
             } else if(result.resultCode == Activity.RESULT_CANCELED) {
                 Snackbar.make(
@@ -96,7 +73,7 @@ class NewPostFragment : Fragment()  {
         pickPhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri: Uri? = result.data?.data
-                viewModel.changePhoto(uri, uri?.toFile())
+                viewModel.changeEventPhoto(uri, uri?.toFile())
             } else if(result.resultCode == Activity.RESULT_CANCELED) {
                 Snackbar.make(
                     binding.root,
@@ -110,7 +87,6 @@ class NewPostFragment : Fragment()  {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             pickPhotoLauncher.launch(intent)
-            //.createIntent(pickPhotoLauncher::launch)*/
         }
 
         binding.takePhoto.setOnClickListener {
@@ -119,7 +95,7 @@ class NewPostFragment : Fragment()  {
         }
 
         binding.removePhoto.setOnClickListener {
-            viewModel.changePhoto(null, null)
+            viewModel.changeEventPhoto(null, null)
         }
 
         viewModel.photo.observe(viewLifecycleOwner) {
@@ -133,8 +109,8 @@ class NewPostFragment : Fragment()  {
         }
 
         binding.ok.setOnClickListener {
-            viewModel.changeContent(binding.edit.text.toString())
-            viewModel.save()
+            viewModel.changeEventContent(binding.edit.text.toString())
+            viewModel.saveEvent()
             AndroidUtils.hideKeyboard(requireView())
             findNavController().navigateUp()
             val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
@@ -142,7 +118,6 @@ class NewPostFragment : Fragment()  {
             val activity = activity as? AppActivity
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
             activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.VISIBLE
-
         }
         return binding.root
 

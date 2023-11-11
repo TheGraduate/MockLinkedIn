@@ -20,7 +20,7 @@ import com.example.mocklinkedin.databinding.FragmentFeedBinding
 class FeedFragment : Fragment() {
 
     private val viewModel: PostViewModel by viewModels(
-        ownerProducer = ::requireParentFragment /* { requireActivity() } */ // если поменять на requireActivity посты не будут сразу после написания
+        ownerProducer = ::requireParentFragment
     )
 
     override fun onCreateView (
@@ -33,16 +33,9 @@ class FeedFragment : Fragment() {
             container,
             false
         )
-        //val viewModel: PostViewModel by viewModels()
+
         val adapter = PostsAdapter (object : OnInteractionListener {
             override fun onEdit(post: Post) {
-                //activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-                //activity?.findViewById<ImageView>(R.id.newpost)?.visibility = View.GONE
-                //val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-                //actionBar?.setDisplayHomeAsUpEnabled(false)
-                //val action = FeedFragmentDirections.actionFeedFragmentToEditPostFragment()//вылетает из за этой строчки
-                //findNavController().navigateUp()
-
                 viewModel.edit(post)
             }
 
@@ -57,8 +50,8 @@ class FeedFragment : Fragment() {
 
             override fun onPost(post: Post) {
                 val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-                val action = FeedFragmentDirections.actionFeedFragmentToPostFragment(post.id.toInt())
-                findNavController().navigate(action)
+                val action = HomeFragmentDirections.actionHomeFragmentToPostFragment(post.id.toInt())
+                requireParentFragment().findNavController().navigate(action)
                 actionBar?.setDisplayHomeAsUpEnabled(true)
             }
 
@@ -74,18 +67,6 @@ class FeedFragment : Fragment() {
             }
         })
 
-        /*fun hideMessageMenu() {
-           binding.cancel.visibility = View.GONE
-           binding.content.visibility = View.GONE
-           binding.save.visibility = View.GONE
-        }
-
-        fun showMessageMenu() {
-            binding.content.visibility = View.VISIBLE
-            binding.save.visibility = View.VISIBLE
-            binding.cancel.visibility = View.VISIBLE
-        }*/
-
         binding.list.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
@@ -99,8 +80,18 @@ class FeedFragment : Fragment() {
             val sendPostText = Bundle()
             sendPostText.putString(Intent.EXTRA_TEXT, post.content)
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-            activity?.findViewById<ImageView>(R.id.newpost)?.visibility = View.GONE
-            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, sendPostText)
+            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+            requireParentFragment().findNavController().navigate(R.id.action_homeFragment_to_editPostFragment, sendPostText)
+        }
+
+        binding.floatingNewPostButton.setOnClickListener {
+            //requireParentFragment().findNavController().navigate(R.id.action_homeFragment_to_newPostFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToNewPostFragment()
+            requireParentFragment().findNavController().navigate(action)
+            val actionBar = (activity as AppCompatActivity).supportActionBar
+            actionBar?.setDisplayHomeAsUpEnabled(true)
+            activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
+            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
         }
 
        /* binding.root.setOnClickListener {

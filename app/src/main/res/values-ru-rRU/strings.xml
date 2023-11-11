@@ -39,4 +39,14 @@
     <string name="lastNameString">Фамилия</string>
     <string name="nickNameString">Никнейм</string>
     <string name="birthDateString">Дата рождения</string>
+    <string name="registrationSuggestion">У вас нет аккаунта? Вы можете зарегистрироваться здесь.</string>
+    <string name="registration">Регистрация</string>
+    <string name="loginTitle">Вход</string>
+    <string name="registrationTitle">Регистрация</string>
+    <string name="loginHint">Логин</string>
+    <string name="passwordHint">Пароль</string>
+    <string name="enterButton">Войти</string>
+    <string name="name">Имя</string>
+    <string name="lastName">Фамилия</string>
+    <string name="existUser">Пользователь не найден</string>
 </resources>

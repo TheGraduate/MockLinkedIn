@@ -1,6 +1,5 @@
 package com.example.mocklinkedin.adapter
 
-//todo попытаться сделать viewPager?
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle

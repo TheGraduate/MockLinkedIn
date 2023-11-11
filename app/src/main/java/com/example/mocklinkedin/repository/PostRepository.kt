@@ -1,6 +1,7 @@
 package com.example.mocklinkedin.repository
 
 import androidx.lifecycle.LiveData
+import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
 import com.example.mocklinkedin.dto.Post
 

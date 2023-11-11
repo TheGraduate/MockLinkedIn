@@ -5,10 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mocklinkedin.enumeration.AttachmentType
 import com.example.mocklinkedin.dto.Attachment
+import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.example.mocklinkedin.dto.Post
+import java.io.IOException
 
 class PostRepositorySharedPrefsImpl(
     context: Context,
@@ -70,9 +72,19 @@ class PostRepositorySharedPrefsImpl(
 
     override fun saveWithAttachment(post: Post, upload: MediaUpload) {
         //val media = upload(upload)
-        val postWithAttachment = post.copy(attachment = Attachment(AttachmentType.IMAGE))
+        val postWithAttachment = post.copy(attachment = Attachment(/*media.id,*/ AttachmentType.IMAGE))
         save(postWithAttachment)
     }
+
+   /* override  fun upload(upload: MediaUpload): Media {
+            val media = upload.file.name
+                MultipartBody.Part.createFormData(
+                "file", upload.file.name, upload.file.asRequestBody()
+            )
+            val response = upload(media)
+
+            return response.body()
+    }*/
 
 /*    override fun upload(upload: MediaUpload): Media {
         val media = MultipartBody.Part.createFormData(

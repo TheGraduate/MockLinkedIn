@@ -1,25 +1,22 @@
 package com.example.mocklinkedin.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-
 import com.example.mocklinkedin.R
-import com.example.mocklinkedin.activity.NewPostFragment.Companion.textArg
 
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+class AppActivity : AppCompatActivity(R.layout.activity_app){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
 
-//import com.example.mocklinkedin.adapter.DemoCollectionAdapter
-
-class AppActivity : AppCompatActivity(R.layout.activity_app) {
+/*
+ {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,14 +36,14 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             }
         }
 
-        setSupportActionBar(/*customToolbar*/findViewById(R.id.toolbar))
+        setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val profileButton = findViewById<ImageView>(R.id.profile)
         val newPostButton = findViewById<ImageView>(R.id.newpost)
 
-       /* val viewPager: ViewPager2 = findViewById(R.id.pager)
+        val viewPager: ViewPager2 = findViewById(R.id.pager)
         val tabLayout: TabLayout = findViewById(R.id.tabLayout)
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = adapter
@@ -57,22 +54,23 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 1 -> tab.text = "Tab 2"
                 2 -> tab.text = "Tab 3"
             }
-        }.attach()*/
+        }.attach()
+*/
 
 
-       fun hideButtons() {
+    /*   fun hideButtons() {
 
             profileButton.visibility = View.GONE
             newPostButton.visibility = View.GONE
         }
-        fun showButtons() {
+       fun showButtons() {
             profileButton.visibility = View.VISIBLE
             newPostButton.visibility = View.VISIBLE
         }
 
-        /*showButtons()
+        showButtons()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        invalidateOptionsMenu()*/
+        invalidateOptionsMenu()
 
         profileButton.setOnClickListener {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -88,7 +86,8 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             //tabLayout.visibility = TabLayout.GONE
         }
 
-
+*/
+/*
 
 
         intent?.let {
@@ -109,10 +108,10 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 }
             )
         }
+*/
 
-            // todo при нажатии на кнопку FeedFragment в bottomNavigationView приложение крашится, также
-            //   крашится при нажатии на верхние кнопки, если фрагмент на экране(и в bottomNavigationView) не FeedFragment
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu)
+
+     /*   val bottomNavigationView = findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu)
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_item_feed -> {
@@ -139,9 +138,9 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 else -> return@setOnItemSelectedListener false
             }
         }
-    }
+    }*/
 
-    private fun showBottomNavigationBar() {
+   /* private fun showBottomNavigationBar() {
         // Отобразить BottomNavigationBar, например, установить видимость на VISIBLE
         findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu).visibility = View.VISIBLE
         //include_bottom_navigation_menu.visibility = View.VISIBLE
@@ -150,7 +149,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
     private fun hideBottomNavigationBar() {
         findViewById<BottomNavigationView>(R.id.include_bottom_navigation_menu).visibility = View.GONE
     }
-
+*/
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.post_list_menu, menu)
         return true
@@ -162,7 +161,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 findNavController(R.id.nav_host_fragment).navigateUp()
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 findViewById<ImageView>(R.id.profile).visibility = View.VISIBLE
-                findViewById<ImageView>(R.id.newpost).visibility = View.VISIBLE
+                findViewById<ImageView>(R.id.enterExit).visibility = View.VISIBLE
                 //findViewById<TabLayout>(R.id.tabLayout).visibility = TabLayout.VISIBLE
                 return true
             }
@@ -170,7 +169,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         }
     }
 
-   /* override fun onResume() {
+    /*override fun onResume() {
         super.onResume()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         //findViewById<ImageView>(R.id.profile).visibility = View.VISIBLE

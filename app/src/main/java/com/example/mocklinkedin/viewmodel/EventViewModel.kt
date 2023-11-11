@@ -5,15 +5,17 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mocklinkedin.dto.Event
 import com.example.mocklinkedin.dto.MediaUpload
-import com.example.mocklinkedin.model.PhotoModel
 import com.example.mocklinkedin.dto.Post
+import com.example.mocklinkedin.model.PhotoModel
+import com.example.mocklinkedin.repository.EventRepository
+import com.example.mocklinkedin.repository.EventRepositorySharedPrefsImpl
 import com.example.mocklinkedin.repository.PostRepository
-//import com.example.mocklinkedin.repository.PostRepositoryInMemoryImpl
 import com.example.mocklinkedin.repository.PostRepositorySharedPrefsImpl
 import java.io.File
 
-private val empty = Post(
+private val empty = Event(
     id = 0,
     author = "",
     content = "",
@@ -26,33 +28,33 @@ private val empty = Post(
 )
 
 private val noPhoto = PhotoModel()
-class PostViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
-    val data = repository.getAll()
+class EventViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository: EventRepository = EventRepositorySharedPrefsImpl(application)
+    val data = repository.getAllEvents()
     val edited = MutableLiveData(empty)
 
     private val _photo = MutableLiveData(noPhoto)
     val photo: LiveData<PhotoModel>
         get() = _photo
 
-    fun save() {
+    fun saveEvent() {
         edited.value?.let {
             //repository.save(it)
             when(_photo.value) {
-                noPhoto -> repository.save(it)
+                noPhoto -> repository.saveEvent(it)
                 else -> _photo.value?.file?.let { file ->
-                    repository.saveWithAttachment(it, MediaUpload(file))
+                    repository.saveEventWithAttachment(it, MediaUpload(file))
                 }
             }
         }
         edited.value = empty
     }
 
-    fun edit(post: Post) {
-        edited.value = post
+    fun editEvent(event: Event) {
+        edited.value = event
     }
 
-    fun changeContent(content: String) {
+    fun changeEventContent(content: String) {
         val text = content.trim()
         if (edited.value?.content == text) {
             return
@@ -60,11 +62,11 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = edited.value?.copy(content = text)
     }
 
-    fun changePhoto(uri: Uri?, file: File?) {
+    fun changeEventPhoto(uri: Uri?, file: File?) {
         _photo.value = PhotoModel(uri, file)
     }
 
-    fun likeById(id: Long) = repository.likeById(id)
-    fun shareById(id: Long) = repository.shareById(id)
-    fun removeById(id: Long) = repository.removeById(id)
+    fun likeEventById(id: Long) = repository.likeEventById(id)
+    fun shareEventById(id: Long) = repository.shareEventById(id)
+    fun removeEventById(id: Long) = repository.removeEventById(id)
 }

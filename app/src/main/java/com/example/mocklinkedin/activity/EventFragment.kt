@@ -2,25 +2,25 @@ package com.example.mocklinkedin.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.mocklinkedin.adapter.OnInteractionListener
-import com.example.mocklinkedin.dto.Post
-import com.example.mocklinkedin.adapter.PostViewHolder
 import com.example.mocklinkedin.R
-import com.example.mocklinkedin.viewmodel.PostViewModel
-import com.example.mocklinkedin.databinding.FragmentPostBinding
+import com.example.mocklinkedin.adapter.EventViewHolder
+import com.example.mocklinkedin.adapter.OnInteractionListenerEvents
+import com.example.mocklinkedin.databinding.FragmentEventBinding
+import com.example.mocklinkedin.dto.Event
+import com.example.mocklinkedin.viewmodel.EventViewModel
 
-class PostFragment : Fragment() {
+class EventFragment : Fragment() {
 
-    private val viewModel: PostViewModel by viewModels(
+    private val viewModel: EventViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
@@ -31,22 +31,21 @@ class PostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentPostBinding.inflate(inflater, container, false)
-        val viewHolder = PostViewHolder(binding.cardPost, object : OnInteractionListener {
-            override fun onEdit(post: Post) {
-
-                viewModel.edit(post)
+        val binding = FragmentEventBinding.inflate(inflater, container, false)
+        val viewHolder = EventViewHolder(binding.eventCard, object : OnInteractionListenerEvents {
+            override fun onEditEvent(event: Event) {
+                viewModel.editEvent(event)
             }
-            override fun onLike(post: Post) {
-                viewModel.likeById(post.id)
+            override fun onLikeEvent(event: Event) {
+                viewModel.likeEventById(event.id)
             }
-            override fun onRemove(post: Post) {
-                viewModel.removeById(post.id)
+            override fun onRemoveEvent(event: Event) {
+                viewModel.removeEventById(event.id)
             }
-            override fun onShare(post: Post) {
+            override fun onShareEvent(event: Event) {
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, post.content)
+                    putExtra(Intent.EXTRA_TEXT, event.content)
                     type = "text/plain"
                 }
                 val shareIntent = Intent.createChooser(intent, getString(R.string.chooser_share_post))
@@ -54,12 +53,12 @@ class PostFragment : Fragment() {
             }
         })
 
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val post = posts.find { it.id == args.postId.toLong() } ?: run {
+        viewModel.data.observe(viewLifecycleOwner) { events ->
+            val event = events.find { it.id == args.postId.toLong() } ?: run {
                 findNavController().navigateUp()
                 return@observe
             }
-            viewHolder.bind(post)
+            viewHolder.bind(event)
         }
 
         activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE

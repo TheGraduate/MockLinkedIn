@@ -3,32 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/feedFragment">
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mocklinkedin.activity.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_postFragment"
+            app:destination="@id/postFragment"
+            app:popUpTo="@id/feedFragment">
+            <argument
+                android:name="postId"
+                app:argType="integer" />
+        </action>
+        <action
+            android:id="@+id/action_homeFragment_to_newPostFragment"
+            app:destination="@id/newPostFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment"
+            app:popUpTo="@id/feedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.example.mocklinkedin.activity.FeedFragment"
         android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed" >
-        <action
-            android:id="@+id/action_feedFragment_to_postFragment"
-            app:destination="@id/postFragment"
-            app:popUpTo="@id/feedFragment">
-            <argument
-            android:name="postId"
-            app:argType="integer"
-                />
-        </action>
-        <action
-            android:id="@+id/action_feedFragment_to_newPostFragment"
-            app:destination="@id/newPostFragment" />
-        <action
-            android:id="@+id/action_feedFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_feedFragment_to_editPostFragment"
-            app:destination="@id/editPostFragment"
-            app:popUpTo="@id/feedFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_feed" />
 
     <fragment
         android:id="@+id/postFragment"
@@ -36,8 +45,8 @@
         android:label="fragment_post"
         tools:layout="@layout/fragment_post">
         <argument
-        android:name="postId"
-        app:argType="integer" />
+            android:name="postId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_postFragment_to_newPostFragment"
             app:destination="@id/newPostFragment" />
@@ -54,22 +63,47 @@
         android:id="@+id/newPostFragment"
         android:name="com.example.mocklinkedin.activity.NewPostFragment"
         android:label="NewPostFragment"
-        tools:layout="@layout/fragment_new_post"/>
+        tools:layout="@layout/fragment_new_post" />
     <fragment
         android:id="@+id/editPostFragment"
         android:name="com.example.mocklinkedin.activity.EditPostFragment"
         android:label="EditPostFragment"
-        tools:layout="@layout/fragment_edit_post"/>
-    <activity
-        android:id="@+id/appActivity"
-        android:name="com.example.mocklinkedin.activity.AppActivity"
-        android:label="AppActivity" />
+        tools:layout="@layout/fragment_edit_post" />
     <fragment
         android:id="@+id/eventsFragment"
         android:name="com.example.mocklinkedin.activity.EventsFragment"
-        android:label="EventsFragment" />
+        android:label="EventsFragment"
+        tools:layout="@layout/fragment_events">
+        <action
+            android:id="@+id/action_eventsFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_newPostFragment"
+            app:destination="@id/newPostFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_newPostFragment2"
+            app:destination="@id/newPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/usersListFragment"
         android:name="com.example.mocklinkedin.activity.UsersListFragment"
-        android:label="UsersListFragment" />
+        android:label="UsersListFragment"
+        tools:layout="@layout/users_list_fragment"/>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.mocklinkedin.activity.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.mocklinkedin.activity.RegistrationFragment"
+        android:label="RegistrationFragment"
+        tools:layout="@layout/fragment_registration"/>
 </navigation>

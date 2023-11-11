@@ -5,12 +5,13 @@ import java.text.DateFormat
 import java.util.Date
 
 data class User (
-    val id: Int,
-    val nicName: String,
+    val id: Long,
+    val nickName: String,
     val firstName: String,
     val lastName: String,
+    val password: String,
     val birthDate: Int,//DateFormat
-    val registrationDate: Int,//DateFormat
+    val registrationDate: String,//DateFormat
     val avatar: Avatar? = null
 )
 
