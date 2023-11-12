@@ -3,6 +3,7 @@ package com.example.mocklinkedin.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mocklinkedin.api.PostsApi
 import com.example.mocklinkedin.enumeration.AttachmentType
 import com.example.mocklinkedin.dto.Attachment
 import com.example.mocklinkedin.dto.Media
@@ -10,8 +11,11 @@ import com.example.mocklinkedin.dto.MediaUpload
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.example.mocklinkedin.dto.Post
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.IOException
 
+/*
 class PostRepositorySharedPrefsImpl(
     context: Context,
 ) : PostRepository {
@@ -72,26 +76,30 @@ class PostRepositorySharedPrefsImpl(
 
     override fun saveWithAttachment(post: Post, upload: MediaUpload) {
         //val media = upload(upload)
-        val postWithAttachment = post.copy(attachment = Attachment(/*media.id,*/ AttachmentType.IMAGE))
+        val postWithAttachment = post.copy(attachment = Attachment(*/
+/*media.id,*//*
+ AttachmentType.IMAGE))
         save(postWithAttachment)
     }
 
-   /* override  fun upload(upload: MediaUpload): Media {
+    override  fun upload(upload: MediaUpload): Media {
             val media = upload.file.name
                 MultipartBody.Part.createFormData(
                 "file", upload.file.name, upload.file.asRequestBody()
             )
-            val response = upload(media)
+        val response = PostsApi.service.upload(media)
 
             return response.body()
-    }*/
+    }
 
+*/
 /*    override fun upload(upload: MediaUpload): Media {
         val media = MultipartBody.Part.createFormData(
             "file", upload.file.name, upload.file.asRequestBody()
         )
 
-    }*/
+    }*//*
+
 
     override fun shareById(id: Long) {
         posts = posts.map {
@@ -107,4 +115,4 @@ class PostRepositorySharedPrefsImpl(
             apply()
         }
     }
-}
+}*/

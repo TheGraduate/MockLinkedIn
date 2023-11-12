@@ -30,11 +30,12 @@ class PostFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentPostBinding.inflate(inflater, container, false)
+    ): View {
+        val binding = FragmentPostBinding.inflate(inflater,
+            container,
+            false)
         val viewHolder = PostViewHolder(binding.cardPost, object : OnInteractionListener {
             override fun onEdit(post: Post) {
-
                 viewModel.edit(post)
             }
             override fun onLike(post: Post) {
@@ -55,7 +56,7 @@ class PostFragment : Fragment() {
         })
 
         viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val post = posts.find { it.id == args.postId.toLong() } ?: run {
+            val post = posts.objects.find { it.id == args.postId.toLong() } ?: run {
                 findNavController().navigateUp()
                 return@observe
             }

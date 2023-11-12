@@ -1,15 +1,16 @@
 package com.example.mocklinkedin.repository
 
-import androidx.lifecycle.LiveData
+import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
-import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.dto.User
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    fun getAllUsers(): LiveData<List<User>>
+    val data: Flow<List<User>>
+    suspend fun getAllUsers()
    // fun getUser(): LiveData<User>
-    fun saveUser(user: User)
-
-    fun saveUserWithAvatar(user: User, upload: MediaUpload)
-    fun UserExist(username: String, password: String): Boolean
+    suspend fun saveUser(username: String, firstName: String, password: String)
+    suspend fun upload(upload: MediaUpload): Media
+    suspend fun registrationUser(username: String, firstName: String, password: String, upload: MediaUpload)
+    suspend fun authentificationUser(username: String, password: String): Boolean
 }
