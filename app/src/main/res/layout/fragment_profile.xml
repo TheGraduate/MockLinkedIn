@@ -71,17 +71,18 @@
     android:inputType="text" />
 
     <TextView
-        android:id="@+id/birthDateString"
+        android:id="@+id/passwordString"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/birthDateString" />
+        android:text="@string/passwordHint" />
 
     <EditText
-    android:id="@+id/birthDateEditText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/birth_date"
-    android:inputType="date" />
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/passwordHint"/>
 
     <Button
     android:id="@+id/saveChangesButton"

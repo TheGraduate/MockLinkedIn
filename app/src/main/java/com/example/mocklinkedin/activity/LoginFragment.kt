@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.databinding.FragmentHomeBinding
 import com.example.mocklinkedin.databinding.FragmentLoginBinding
+import com.example.mocklinkedin.dto.User
 import com.example.mocklinkedin.viewmodel.UserViewModel
 
 class LoginFragment : Fragment() {
@@ -25,7 +26,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         val binding = FragmentLoginBinding.inflate(
@@ -38,8 +39,9 @@ class LoginFragment : Fragment() {
         val username = binding.editTextLogin.text.toString()
         val password = binding.editTextPassword.text.toString()
 
+
         binding.loginButton.setOnClickListener {
-            if(viewModel.UserExist(username, password)) {
+            if(viewModel.authenticateUser(username,password)) {
                 actionBar?.setDisplayHomeAsUpEnabled(false)
                 val activity = activity as? AppActivity
                 activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE

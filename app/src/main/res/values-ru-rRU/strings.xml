@@ -49,4 +49,8 @@
     <string name="name">Имя</string>
     <string name="lastName">Фамилия</string>
     <string name="existUser">Пользователь не найден</string>
+    <string name="empty_posts">Посты отсутствуют</string>
+    <string name="show_new_posts">Новые посты</string>
+    <string name="error_loading">Ошибка загрузки</string>
+    <string name="retry_loading">Перезагрузить</string>
 </resources>

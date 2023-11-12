@@ -54,7 +54,7 @@ class EventFragment : Fragment() {
         })
 
         viewModel.data.observe(viewLifecycleOwner) { events ->
-            val event = events.find { it.id == args.postId.toLong() } ?: run {
+            val event = events.objects.find { it.id == args.postId.toLong() } ?: run {
                 findNavController().navigateUp()
                 return@observe
             }

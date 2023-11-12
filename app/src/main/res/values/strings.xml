@@ -50,4 +50,8 @@
     <string name="name">Name</string>
     <string name="lastName">Lastname</string>
     <string name="existUser">User not found</string>
+    <string name="empty_posts">Empty</string>
+    <string name="show_new_posts">New posts</string>
+    <string name="error_loading">Loading error</string>
+    <string name="retry_loading">Retry</string>
 </resources>

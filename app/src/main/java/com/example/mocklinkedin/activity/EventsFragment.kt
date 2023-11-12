@@ -46,7 +46,11 @@ class EventsFragment : Fragment() {
             }
 
             override fun onLikeEvent(event: Event) {
-                viewModel.likeEventById(event.id)
+                if (event.likedByMe) {
+                    viewModel.unlikeEventById(event.id)
+                } else {
+                    viewModel.likeEventById(event.id)
+                }
             }
 
             override fun onRemoveEvent(event: Event) {
@@ -75,7 +79,7 @@ class EventsFragment : Fragment() {
 
         binding.list.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { events ->
-            adapter.submitList(events)
+            adapter.submitList(events.objects)
         }
 
         viewModel.edited.observe(viewLifecycleOwner) { event ->
