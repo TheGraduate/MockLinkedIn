@@ -45,7 +45,6 @@ class ProfileFragment : Fragment() {
         val firstNameEditText = binding.firstNameEditText
         val lastNameEditText = binding.lastNameEditText
         val usernameEditText = binding.usernameEditText
-        val birthDateEditText = binding.birthDateEditText
 
         val sharedPref = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
@@ -53,7 +52,6 @@ class ProfileFragment : Fragment() {
         firstNameEditText.setText(sharedPref.getString("firstNameEditText", ""))
         lastNameEditText.setText(sharedPref.getString("lastNameEditText", ""))
         usernameEditText.setText(sharedPref.getString("usernameEditText", ""))
-        birthDateEditText.setText(sharedPref.getString("birthDateEditText", ""))
 
         changeAvatarButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -65,7 +63,6 @@ class ProfileFragment : Fragment() {
             editor.putString("usernameEditText", usernameEditText.text.toString())
             editor.putString("firstNameEditText", firstNameEditText.text.toString())
             editor.putString("lastNameEditText", lastNameEditText.text.toString())
-            editor.putString("birthDateEditText", birthDateEditText.text.toString())
             editor.apply()
         }
 
