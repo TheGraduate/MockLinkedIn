@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white" >
+
+    <TextView
+        android:id="@+id/job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/job"
+        android:textSize="30dp"
+        android:textColor="@color/purple_700" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/header"
+        android:layout_width="54dp"
+        android:layout_height="122dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="positionAtCompany,dateStartOfWork,dateEndOfWork,companyName,job" />
+
+    <TextView
+        android:id="@+id/companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/name_of_company" />
+
+    <TextView
+        android:id="@+id/positionAtCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/position_at_company" />
+
+    <TextView
+        android:id="@+id/dateStartOfWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/date_start_of_work" />
+
+    <TextView
+        android:id="@+id/dateEndOfWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/date_end_of_work" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/footer"
+        android:layout_width="68dp"
+        android:layout_height="130dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="?android:attr/listDivider" />
+
+
+</LinearLayout>

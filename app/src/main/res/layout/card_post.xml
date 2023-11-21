@@ -6,6 +6,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:id="@+id/geo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="9dp"
+        android:text="@string/standart_geolocation"
+        app:layout_constraintBottom_toTopOf="@+id/content"
+        app:layout_constraintStart_toEndOf="@+id/published"
+        app:layout_constraintTop_toBottomOf="@+id/author" />
+
+    <TextView
         android:id="@+id/author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("androidx.navigation.safeargs.kotlin")
+    id("org.jetbrains.kotlin.kapt")
     //id ("com.google.gms.google-services")
 }
 
@@ -96,7 +97,9 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
-    implementation ("androidx.room:room-runtime:2.5.0")
+    implementation ("androidx.room:room-runtime:2.6.0")
+    implementation("androidx.room:room-ktx:2.6.0") // Нужно для использования suspend
+    kapt("androidx.room:room-compiler:2.6.0") // Для генерации кода
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

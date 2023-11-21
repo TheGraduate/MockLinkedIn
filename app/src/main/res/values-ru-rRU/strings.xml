@@ -29,28 +29,38 @@
     <string name="menu_save">Сохранить</string>
     <string name="user_avatar">Аватарка пользователя</string>
     <string name="change_avatar">Изменить аватарку</string>
-    <string name="first_name">Имя</string>
-    <string name="last_name">Фамилия</string>
-    <string name="username">Никнейм</string>
-    <string name="birth_date">Дата рождения</string>
+
+    <string name="user_name_string">Имя</string>
+    <string name="user_name">Имя</string>
+
+    <string name="login_string">Логин</string>
+    <string name="login">Логин</string>
+    <!--<string name="last_name">Фамилия</string>-->
+    <!--<string name="birth_date">Дата рождения</string>-->
+    <string name="registration_date_string">Дата регистрации</string>
     <string name="registration_date">Дата регистрации</string>
+
+   <!-- <string name="birthDateString">Дата рождения</string>-->
+
     <string name="save_changes">Сохранить изменения</string>
-    <string name="firstNameString">Имя</string>
-    <string name="lastNameString">Фамилия</string>
-    <string name="nickNameString">Никнейм</string>
-    <string name="birthDateString">Дата рождения</string>
     <string name="registrationSuggestion">У вас нет аккаунта? Вы можете зарегистрироваться здесь.</string>
     <string name="registration">Регистрация</string>
     <string name="loginTitle">Вход</string>
     <string name="registrationTitle">Регистрация</string>
+
     <string name="loginHint">Логин</string>
     <string name="passwordHint">Пароль</string>
+
     <string name="enterButton">Войти</string>
-    <string name="name">Имя</string>
-    <string name="lastName">Фамилия</string>
     <string name="existUser">Пользователь не найден</string>
     <string name="empty_posts">Посты отсутствуют</string>
     <string name="show_new_posts">Новые посты</string>
     <string name="error_loading">Ошибка загрузки</string>
     <string name="retry_loading">Перезагрузить</string>
+    <string name="name_of_company">Место работы</string>
+    <string name="position_at_company">Должность</string>
+    <string name="date_start_of_work">Дата началы работы</string>
+    <string name="date_end_of_work">Дата конца работы</string>
+    <string name="job">Работа:</string>
+    <string name="standart_geolocation">0.0 0.0</string>
 </resources>

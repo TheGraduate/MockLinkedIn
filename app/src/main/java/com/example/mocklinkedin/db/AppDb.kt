@@ -7,9 +7,11 @@ import androidx.room.RoomDatabase
 import com.example.mocklinkedin.dao.EventDao
 import com.example.mocklinkedin.dao.PostDao
 import com.example.mocklinkedin.dao.UserDao
+import com.example.mocklinkedin.entity.EventEntity
 import com.example.mocklinkedin.entity.PostEntity
+import com.example.mocklinkedin.entity.UserEntity
 
-@Database(entities = [PostEntity::class], version = 1, exportSchema = false)
+@Database(entities = [PostEntity::class, UserEntity::class, EventEntity::class], version = 1, exportSchema = false)
 /*@TypeConverters(Converters::class)*/ //TODO
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao

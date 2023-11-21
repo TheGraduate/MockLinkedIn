@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,7 @@ import com.example.mocklinkedin.viewmodel.UserViewModel
 
 class ProfileFragment : Fragment() {
 
-    private var avatarImageView: ImageView? = null
+    private var avatarImageView: ImageButton? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,28 +42,33 @@ class ProfileFragment : Fragment() {
         )
 
         avatarImageView = binding.avatarImageView
-        val changeAvatarButton = binding.changeAvatarButton
-        val firstNameEditText = binding.firstNameEditText
-        val lastNameEditText = binding.lastNameEditText
-        val usernameEditText = binding.usernameEditText
+        //val changeAvatarButton = binding.changeAvatarButton
+        val nameEditText = binding.NameEditText
+        val loginEditText = binding.loginEditText
 
         val sharedPref = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
-        firstNameEditText.setText(sharedPref.getString("firstNameEditText", ""))
-        lastNameEditText.setText(sharedPref.getString("lastNameEditText", ""))
-        usernameEditText.setText(sharedPref.getString("usernameEditText", ""))
+        nameEditText.setText(sharedPref.getString("nameEditText", ""))
+        //lastNameEditText.setText(sharedPref.getString("lastNameEditText", ""))
+        loginEditText.setText(sharedPref.getString("loginEditText", ""))
 
-        changeAvatarButton.setOnClickListener {
+        //changeAvatarButton.setOnClickListener {
+            //val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            //intent.type = "image/*"
+            //someActivityResultLauncher.launch(intent)
+        //}
+
+        avatarImageView?.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.type = "image/*"
             someActivityResultLauncher.launch(intent)
         }
 
         binding.saveChangesButton.setOnClickListener {
-            editor.putString("usernameEditText", usernameEditText.text.toString())
-            editor.putString("firstNameEditText", firstNameEditText.text.toString())
-            editor.putString("lastNameEditText", lastNameEditText.text.toString())
+            editor.putString("loginEditText", loginEditText.text.toString())
+            editor.putString("nameEditText", nameEditText.text.toString())
+            //editor.putString("lastNameEditText", lastNameEditText.text.toString())
             editor.apply()
         }
 

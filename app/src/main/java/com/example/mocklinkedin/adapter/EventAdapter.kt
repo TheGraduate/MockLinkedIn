@@ -39,11 +39,12 @@ class EventViewHolder(
     fun bind(event: Event) {
         binding.apply {
             author.text = event.author
-            published.text = event.published
+            published.text = event.published.toString()
             content.text = event.content
             like.isChecked = event.likedByMe
             like.text = "${event.likes}"
             share.text = "${event.shares}"
+            geo.text = event.geo.toString()
             //like.text = CalculateParametrs(event.likes)
             //share.text = CalculateParametrs(event.shares)
             //viewCount.text = CalculateParametrs(event.views)

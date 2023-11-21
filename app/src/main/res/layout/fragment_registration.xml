@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,30 +8,24 @@
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/choseAvatarButton"
+        android:layout_marginTop="@dimen/button_margin_vertical"
         android:hint="@string/loginHint" />
 
     <EditText
         android:id="@+id/editTextFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextUsername"
-        android:layout_marginTop="16dp"
-        android:hint="@string/name" />
-
-    <EditText
-        android:id="@+id/editTextLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextFirstName"
-        android:layout_marginTop="16dp"
-        android:hint="@string/lastName" />
+        android:layout_below="@+id/editTextPassword"
+        android:layout_marginTop="@dimen/button_margin_vertical"
+        android:hint="@string/user_name" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextLastName"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_marginTop="@dimen/button_margin_vertical"
         android:hint="@string/passwordHint"
         android:inputType="textPassword" />
 
@@ -38,8 +33,18 @@
         android:id="@+id/registrationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/editTextFirstName"
+        android:layout_marginTop="@dimen/button_margin_vertical"
         android:text="@string/registration" />
+
+    <ImageButton
+        android:id="@+id/choseAvatarButton"
+        android:layout_width="139dp"
+        android:layout_height="119dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/button_margin_vertical"
+        android:layout_marginEnd="136dp"
+        app:srcCompat="@drawable/baseline_camera_alt_24" />
 
 </RelativeLayout>

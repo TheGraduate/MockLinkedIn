@@ -43,12 +43,6 @@
                 android:layout_marginEnd="4dp"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/userLastname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lastname" />
-
         </LinearLayout>
 
     </LinearLayout>

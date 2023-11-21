@@ -24,16 +24,18 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 import java.io.File
+import java.util.Date
 
 private val empty = Event(
     id = 0,
     author = "",
     content = "",
-    published = "",
+    published = Date(),
     likedByMe = false,
     likes = 0,
     shares = 0,
     views = 0,
+    geo = null,
     attachment = null
 )
 

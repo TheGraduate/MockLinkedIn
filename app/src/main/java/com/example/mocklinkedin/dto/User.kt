@@ -4,9 +4,8 @@ import com.example.mocklinkedin.enumeration.AttachmentType
 
 data class User(
     val id: Long,
-    val nickName: String,
-    val firstName: String,
-    val lastName: String,
+    val login: String,
+    val name: String,
     val password: String,
     val registrationDate: String,
     val avatar: Attachment? = null

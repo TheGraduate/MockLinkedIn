@@ -1,5 +1,6 @@
 package com.example.mocklinkedin.repository
 
+import android.location.Location
 import androidx.lifecycle.*
 import com.example.mocklinkedin.api.PostsApi
 import com.example.mocklinkedin.dao.PostDao
@@ -43,9 +44,10 @@ class PostRepositoryImpl(private val dao: PostDao): PostRepository {
         }
     }
 
-    override suspend fun save(post: Post) {
+    override suspend fun save(post: Post, location: Location?, published: String) {
+
         try {
-            val response = PostsApi.service.save(post)
+            val response = PostsApi.service.save(post, location, published)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
@@ -124,11 +126,16 @@ class PostRepositoryImpl(private val dao: PostDao): PostRepository {
         }
     }
 
-    override suspend fun saveWithAttachment(post: Post, upload: MediaUpload) {
+    override suspend fun saveWithAttachment(
+        post: Post,
+        upload: MediaUpload,
+        location: Location?,
+        dateTimeString: String
+    ) {
         try {
             val media = upload(upload)
             val postWithAttachment = post.copy(attachment = Attachment(media.id, AttachmentType.IMAGE))
-            save(postWithAttachment)
+            save(postWithAttachment, location, dateTimeString)
         } catch (e: AppError) {
             throw e
         } catch (e: IOException) {

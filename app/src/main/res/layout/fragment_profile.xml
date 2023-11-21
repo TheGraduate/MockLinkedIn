@@ -11,83 +11,69 @@
     tools:context=".activity.ProfileFragment">
 
     <LinearLayout
-        android:layout_width="383dp"
-        android:layout_height="174dp"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/avatarImageView"
-            android:layout_width="163dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/user_avatar"
             android:scaleType="centerCrop"
             android:src="@drawable/baseline_account_box_24" />
 
+        <LinearLayout
+            android:layout_width="247dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/NameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user_name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/loginEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:hint="@string/passwordHint"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/saveChangesButton"
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:text="@string/save_changes" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/changeAvatarButton"
+    <View
+        android:id="@+id/divider2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/change_avatar" />
+        android:layout_height="7dp"
+        android:background="?android:attr/listDivider" />
 
-    <TextView
-        android:id="@+id/firstNameString"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/firstNameString" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/job_card">
 
-    <EditText
-    android:id="@+id/firstNameEditText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/first_name"
-    android:inputType="text" />
-
-    <TextView
-        android:id="@+id/lastNameString"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lastNameString" />
-
-    <EditText
-    android:id="@+id/lastNameEditText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/last_name"
-    android:inputType="text" />
-
-    <TextView
-        android:id="@+id/userNameString"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nickNameString" />
-
-    <EditText
-    android:id="@+id/usernameEditText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/username"
-    android:inputType="text" />
-
-    <TextView
-        android:id="@+id/passwordString"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/passwordHint" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/passwordHint"/>
-
-    <Button
-    android:id="@+id/saveChangesButton"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/save_changes" />
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import com.example.mocklinkedin.dto.Attachment
 import com.example.mocklinkedin.dto.Event
 import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.enumeration.AttachmentType
+import java.util.Date
 
 @Entity
 data class EventEntity(
@@ -14,15 +15,28 @@ data class EventEntity(
     val id: Long,
     val author: String,
     val content: String,
-    val published: String,
+    val published: Date,
     var likedByMe: Boolean,
     var likes: Int,
     var shares: Int,
     var views: Int,
     @Embedded
+    var geo: GeoEmbeddable?,
+    @Embedded
     var attachment: AttachmentEmbeddable?,
 ) {
-    fun toDto() = Event(id, author,  content, published, likedByMe, likes, shares, views, attachment?.toDto())
+    fun toDto() = Event(
+        id,
+        author,
+        content,
+        published,
+        likedByMe,
+        likes,
+        shares,
+        views,
+        geo?.toDto(),
+        attachment?.toDto()
+    )
 
     companion object {
         fun fromDto(dto: Event) =
@@ -35,6 +49,7 @@ data class EventEntity(
                 dto.likes,
                 dto.shares,
                 dto.views,
+                GeoEmbeddable.fromDto(dto.geo),
                 AttachmentEmbeddable.fromDto(dto.attachment))
     }
 }

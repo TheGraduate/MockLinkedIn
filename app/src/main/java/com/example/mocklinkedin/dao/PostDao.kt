@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import com.example.mocklinkedin.entity.PostEntity
 import com.example.mocklinkedin.enumeration.AttachmentType
 
-@Dao
+    @Dao
     interface PostDao {
         @Query("SELECT * FROM PostEntity ORDER BY id DESC")
         fun getAll(): Flow<List<PostEntity>>

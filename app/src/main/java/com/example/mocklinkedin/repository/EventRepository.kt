@@ -1,5 +1,6 @@
 package com.example.mocklinkedin.repository
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import com.example.mocklinkedin.dto.Event
 import com.example.mocklinkedin.dto.Media
@@ -14,9 +15,14 @@ interface EventRepository {
     suspend fun likeEventById(id: Long)
     suspend fun unlikeEventById(id: Long)
     suspend fun shareEventById(id: Long)
-    suspend fun saveEvent(event: Event)
+    suspend fun saveEvent(event: Event, location: Location?, published: String)
     suspend fun removeEventById(id: Long)
-    suspend fun saveEventWithAttachment(event: Event, upload: MediaUpload)
+    suspend fun saveEventWithAttachment(
+        event: Event,
+        upload: MediaUpload,
+        location: Location?,
+        published: String
+    )
     suspend fun upload(upload: MediaUpload): Media
 
 }

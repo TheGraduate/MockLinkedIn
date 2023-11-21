@@ -1,10 +1,10 @@
 package com.example.mocklinkedin.api
 
+import android.location.Location
 import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.Post
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -36,7 +36,7 @@ interface PostsApiService {
     suspend fun getById(@Path("id") id: Long): Response<Post>
 
     @POST("posts")
-    suspend fun save(@Body post: Post): Response<Post>
+    suspend fun save(@Body post: Post, location: Location?, published: String): Response<Post>
 
     @DELETE("posts/{id}")
     suspend fun removeById(@Path("id") id: Long): Response<Unit>

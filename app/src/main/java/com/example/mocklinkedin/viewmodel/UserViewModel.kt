@@ -1,6 +1,7 @@
 package com.example.mocklinkedin.viewmodel
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,12 +19,12 @@ import com.example.mocklinkedin.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.io.File
 
 private val empty = User(
     id = 0,
-    nickName = "",
-    firstName = "",
-    lastName = "",
+    login = "",
+    name = "",
     password = "",
     registrationDate = "now",
     avatar = null
@@ -75,6 +76,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
              }
          }
      }
+
+    fun changePhoto(uri: Uri?, file: File?) {
+        _photo.value = PhotoModel(uri, file)
+    }
     // fun getUser(): LiveData<User>
      fun saveUser(username: String, firstName: String, password: String) {
         edited.value?.let {
@@ -103,8 +108,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 _dataState.value = FeedModelState(loading = true)
-                isAuthenticated = repository.authentificationUser(username,password)
-                _userAuthenticated.value = repository.authentificationUser(username,password)
+                isAuthenticated = repository.authUser(username,password)
+                _userAuthenticated.value = repository.authUser(username,password)
                 _dataState.value = FeedModelState()
             } catch (e: Exception) {
                 _dataState.value = FeedModelState(error = true)

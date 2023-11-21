@@ -1,5 +1,6 @@
 package com.example.mocklinkedin.repository
 
+import android.location.Location
 import com.example.mocklinkedin.api.EventsApi
 import com.example.mocklinkedin.dao.EventDao
 import com.example.mocklinkedin.dto.Attachment
@@ -48,9 +49,9 @@ class EventRepositoryImpl(
         }
     }
 
-    override suspend fun saveEvent(event: Event) {
+    override suspend fun saveEvent(event: Event, location: Location?, published: String) {
         try {
-            val response = EventsApi.service.save(event)
+            val response = EventsApi.service.save(event, location, published)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
@@ -127,11 +128,16 @@ class EventRepositoryImpl(
         }
     }
 
-    override suspend fun saveEventWithAttachment(event: Event, upload: MediaUpload) {
+    override suspend fun saveEventWithAttachment(
+        event: Event,
+        upload: MediaUpload,
+        location: Location?,
+        published: String
+    ) {
         try {
             val media = upload(upload)
             val eventWithAttachment = event.copy(attachment = Attachment(media.id, AttachmentType.IMAGE))
-            saveEvent(eventWithAttachment)
+            saveEvent(eventWithAttachment, location, published)
         } catch (e: AppError) {
             throw e
         } catch (e: IOException) {

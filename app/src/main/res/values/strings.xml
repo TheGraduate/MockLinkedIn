@@ -18,8 +18,8 @@
     <string name="back">Back</string>
     <string name="enter_your_post_content">Enter your post content</string>
     <string name="post">Post</string>
-    <string name="hello_blank_fragment1" translatable="false">Hello blank fragment 1</string>
-    <string name="hello_blank_fragment2" translatable="false">Hello blank fragment 2</string>
+    <!--<string name="hello_blank_fragment1" translatable="false">Hello blank fragment 1</string>
+    <string name="hello_blank_fragment2" translatable="false">Hello blank fragment 2</string>-->
     <string name="feed">Feed</string>
     <string name="events">Events</string>
     <string name="users">Users</string>
@@ -30,28 +30,44 @@
     <string name="menu_save">Save</string>
     <string name="user_avatar">User Avatar</string>
     <string name="change_avatar">Change Avatar</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="username">Username</string>
-    <string name="birth_date">Birth Date</string>
+
+    <!--<string name="last_name">Last Name</string>-->
+    <string name="user_name_string">Name</string>
+    <string name="user_name">Name</string>
+
+    <string name="login_string">Login</string>
+    <string name="login">Login</string>
+
+    <string name="registration_date_string">Registration Date</string>
     <string name="registration_date">Registration Date</string>
+
+    <!--<string name="birth_date">Birth Date</string>-->
+
     <string name="save_changes">Save Changes</string>
-    <string name="firstNameString">Name</string>
-    <string name="lastNameString">Lastname</string>
-    <string name="nickNameString">Nickname</string>
-    <string name="birthDateString">Birth date</string>
+    <!--<string name="lastNameString">Lastname</string>-->
+
+    <!--<string name="birthDateString">Birth date</string>-->
     <string name="registrationSuggestion">Don\'t you have an account? You can register here.</string>
     <string name="registration">Registration</string>
     <string name="loginTitle">Login</string>
     <string name="registrationTitle">Registration</string>
+
     <string name="loginHint">Login</string>
     <string name="passwordHint">Password</string>
+
     <string name="enterButton">Enter</string>
-    <string name="name">Name</string>
-    <string name="lastName">Lastname</string>
+    <!--<string name="name">Name</string>-->
+    <!--<string name="lastName">Lastname</string>-->
     <string name="existUser">User not found</string>
     <string name="empty_posts">Empty</string>
     <string name="show_new_posts">New posts</string>
     <string name="error_loading">Loading error</string>
     <string name="retry_loading">Retry</string>
+
+    <string name="name_of_company">Name of company</string>
+    <string name="position_at_company">Position at company</string>
+    <string name="date_start_of_work">Date start of work</string>
+    <string name="date_end_of_work">Date end of work</string>
+    <string name="job">Job:</string>
+    <string name="standart_geolocation">0.0 0.0</string>
 </resources>

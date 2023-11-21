@@ -1,6 +1,7 @@
 package com.example.mocklinkedin.viewmodel
 
 import android.app.Application
+import android.location.Location
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -22,16 +23,20 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 private val empty = Post(
     id = 0,
     author = "",
     content = "",
-    published = "",
+    published = Date(),
     likedByMe = false,
     likes = 0,
     shares = 0,
     views = 0,
+    geo = null,
     attachment = null
 )
 
@@ -92,15 +97,24 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun save() {
+    fun save(location: Location?, dateTimeString: String) {
         edited.value?.let {
             _postCreated.value = Unit
             viewModelScope.launch {
                 try {
                     when(_photo.value) {
-                        noPhoto -> repository.save(it)
+                        noPhoto -> repository.save(
+                            it,
+                            location,
+                            dateTimeString
+                        )
                         else -> _photo.value?.file?.let { file ->
-                            repository.saveWithAttachment(it, MediaUpload(file))
+                            repository.saveWithAttachment(
+                                it,
+                                MediaUpload(file),
+                                location,
+                                dateTimeString
+                            )
                         }
                     }
 

@@ -1,29 +1,22 @@
 package com.example.mocklinkedin.repository
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.mocklinkedin.api.UsersApi
 import com.example.mocklinkedin.dao.UserDao
-import com.example.mocklinkedin.dto.Avatar
 import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
-import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.dto.User
 import com.example.mocklinkedin.entity.UserEntity
 import com.example.mocklinkedin.entity.toDto
 import com.example.mocklinkedin.entity.toEntity
-import com.example.mocklinkedin.enumeration.AttachmentType
 import com.example.mocklinkedin.error.ApiError
 import com.example.mocklinkedin.error.NetworkError
 import com.example.mocklinkedin.error.UnknownError
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Response
 import java.io.IOException
 
 class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
@@ -83,9 +76,9 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
         }
     }
 
-    override suspend fun saveUser(username: String, firstName: String, password: String) {
+    override suspend fun saveUser(login: String, name: String, password: String) {
         try {
-            val response = UsersApi.service.registration(username, firstName, password)
+            val response = UsersApi.service.registration(login, name, password)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
@@ -100,21 +93,36 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
 
     }
 
-    override suspend fun registrationUser(username: String, firstName: String, password: String, upload: MediaUpload) {
-        val media = upload(upload)
-        //val userWithAvatar = copy(avatar = Avatar( media.id, AttachmentType.IMAGE))
-        saveUser(username, firstName, password)
+    override suspend fun registrationUser(login: String, name: String, password: String, upload: MediaUpload): Response<User> {
+        try {
+            val response = UsersApi.service.registration(login, password, name)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            //val registrationUser = response.body() ?: throw ApiError(response.code(), response.message())
+            return UsersApi.service.registration(login, password, name)
+            //return registrationUser.login == login && registrationUser.password == password
+           // val media = upload(upload)
+            //val userWithAvatar = copy(avatar = Avatar( media.id, AttachmentType.IMAGE))
+            //registrationUser(login, name, password, media)
+            //saveUser(login, name, password)
+
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
     }
 
-    override suspend fun authentificationUser(username: String, password: String): Boolean {
+    override suspend fun authUser(login: String, password: String): Boolean {
         try {
-            val response = UsersApi.service.authentication(username, password)
+            val response = UsersApi.service.authentication(login, password)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
 
             val authenticatedUser = response.body() ?: throw ApiError(response.code(), response.message())
-            return authenticatedUser.nickName == username && authenticatedUser.password == password
+            return authenticatedUser.login == login && authenticatedUser.password == password
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
