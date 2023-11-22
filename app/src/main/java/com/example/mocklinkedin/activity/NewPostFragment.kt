@@ -142,7 +142,7 @@ class NewPostFragment : Fragment()  {
             val dateTimeString = dateFormat.format(calendar.time)
 
             viewModel.changeContent(binding.edit.text.toString())
-            val locationManager =requireContext().getSystemService(Context.LOCATION_SERVICE,) as LocationManager
+            val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE,) as LocationManager
             if (ActivityCompat.checkSelfPermission(
                     requireContext(),
                     Manifest.permission.ACCESS_FINE_LOCATION

@@ -1,6 +1,7 @@
 package com.example.mocklinkedin.viewmodel
 
 import android.app.Application
+import android.location.Location
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -99,15 +100,15 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-     fun saveEvent() {
+     fun saveEvent(location: Location?, dateTimeString: String) {
         edited.value?.let {
             _eventCreated.value = Unit
             viewModelScope.launch {
                 try {
                     when(_photo.value) {
-                        noPhoto -> repository.saveEvent(it)
+                        noPhoto -> repository.saveEvent(it, location, dateTimeString)
                         else -> _photo.value?.file?.let { file ->
-                            repository.saveEventWithAttachment(it, MediaUpload(file))
+                            repository.saveEventWithAttachment(it, MediaUpload(file), location, dateTimeString)
                         }
                     }
 
