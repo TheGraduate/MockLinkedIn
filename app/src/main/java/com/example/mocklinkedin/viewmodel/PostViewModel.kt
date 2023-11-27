@@ -1,7 +1,6 @@
 package com.example.mocklinkedin.viewmodel
 
 import android.app.Application
-import android.location.Location
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -10,11 +9,12 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.mocklinkedin.db.AppDb
+import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.dto.MediaUpload
-import com.example.mocklinkedin.model.PhotoModel
 import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.model.FeedModel
 import com.example.mocklinkedin.model.FeedModelState
+import com.example.mocklinkedin.model.PhotoModel
 import com.example.mocklinkedin.repository.PostRepository
 import com.example.mocklinkedin.repository.PostRepositoryImpl
 import com.example.mocklinkedin.util.SingleLiveEvent
@@ -23,9 +23,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 private val empty = Post(
     id = 0,
@@ -97,7 +94,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun save(location: Location?, dateTimeString: String) {
+    fun save(location: Geo?, dateTime: Long) {
         edited.value?.let {
             _postCreated.value = Unit
             viewModelScope.launch {
@@ -106,14 +103,14 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
                         noPhoto -> repository.save(
                             it,
                             location,
-                            dateTimeString
+                            dateTime
                         )
                         else -> _photo.value?.file?.let { file ->
                             repository.saveWithAttachment(
                                 it,
                                 MediaUpload(file),
                                 location,
-                                dateTimeString
+                                dateTime
                             )
                         }
                     }

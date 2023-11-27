@@ -1,7 +1,6 @@
 package com.example.mocklinkedin.viewmodel
 
 import android.app.Application
-import android.location.Location
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -11,13 +10,13 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.mocklinkedin.db.AppDb
 import com.example.mocklinkedin.dto.Event
+import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.dto.MediaUpload
 import com.example.mocklinkedin.model.FeedModel
 import com.example.mocklinkedin.model.FeedModelState
 import com.example.mocklinkedin.model.PhotoModel
 import com.example.mocklinkedin.repository.EventRepository
 import com.example.mocklinkedin.repository.EventRepositoryImpl
-import com.example.mocklinkedin.repository.PostRepository
 import com.example.mocklinkedin.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -25,7 +24,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 import java.io.File
-import java.util.Date
 
 private val empty = Event(
     id = 0,
@@ -100,15 +98,15 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-     fun saveEvent(location: Location?, dateTimeString: String) {
+     fun saveEvent(location: Geo, dateTime: Long) {
         edited.value?.let {
             _eventCreated.value = Unit
             viewModelScope.launch {
                 try {
                     when(_photo.value) {
-                        noPhoto -> repository.saveEvent(it, location, dateTimeString)
+                        noPhoto -> repository.saveEvent(it, location, dateTime)
                         else -> _photo.value?.file?.let { file ->
-                            repository.saveEventWithAttachment(it, MediaUpload(file), location, dateTimeString)
+                            repository.saveEventWithAttachment(it, MediaUpload(file), location, dateTime)
                         }
                     }
 

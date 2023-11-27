@@ -52,8 +52,6 @@ class RegistrationFragment : Fragment() {
                 viewModel.saveUser(login, firstName, password)
                 findNavController().navigateUp()
             }
-            //viewModel.saveUser(username, firstName, password)
-            //findNavController().navigateUp()
         }
 
         pickPhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

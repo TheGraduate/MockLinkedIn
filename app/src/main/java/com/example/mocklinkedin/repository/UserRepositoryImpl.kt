@@ -99,14 +99,7 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
-            //val registrationUser = response.body() ?: throw ApiError(response.code(), response.message())
             return UsersApi.service.registration(login, password, name)
-            //return registrationUser.login == login && registrationUser.password == password
-           // val media = upload(upload)
-            //val userWithAvatar = copy(avatar = Avatar( media.id, AttachmentType.IMAGE))
-            //registrationUser(login, name, password, media)
-            //saveUser(login, name, password)
-
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {

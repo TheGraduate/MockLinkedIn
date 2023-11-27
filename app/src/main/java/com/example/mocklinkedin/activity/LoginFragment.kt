@@ -11,9 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
-import com.example.mocklinkedin.databinding.FragmentHomeBinding
 import com.example.mocklinkedin.databinding.FragmentLoginBinding
-import com.example.mocklinkedin.dto.User
 import com.example.mocklinkedin.viewmodel.UserViewModel
 
 class LoginFragment : Fragment() {

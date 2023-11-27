@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
@@ -24,16 +23,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
-import com.example.mocklinkedin.databinding.FragmentNewPostBinding
 import com.example.mocklinkedin.databinding.FragmentNewEventBinding
 import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.util.AndroidUtils
 import com.example.mocklinkedin.util.StringArg
 import com.example.mocklinkedin.viewmodel.EventViewModel
-import com.example.mocklinkedin.viewmodel.PostViewModel
 import com.google.android.material.snackbar.Snackbar
-import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 class NewEventFragment: Fragment() {
 
@@ -119,9 +116,9 @@ class NewEventFragment: Fragment() {
         }
 
         binding.ok.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
-            val dateTimeString = dateFormat.format(calendar.time)
+            val currentDateTime = LocalDateTime.now()
+            val milliseconds = currentDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+
             viewModel.changeEventContent(binding.edit.text.toString())
             val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE,) as LocationManager
             if (ActivityCompat.checkSelfPermission(
@@ -143,20 +140,18 @@ class NewEventFragment: Fragment() {
             } else {
                 val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                 if (location != null) {
-                    val latitude = location.latitude
-                    val longitude = location.longitude
-                    viewModel.saveEvent(Geo(latitude, longitude) as Location, dateTimeString)
+                    val geo = Geo(location.latitude, location.longitude)
+                    viewModel.saveEvent(geo, milliseconds)
                 } else {
                     Toast.makeText(
                         requireContext(),
                         "Geolocation is unavailable",
                         Toast.LENGTH_LONG
                     ).show()
+                    val geo = Geo(0.0, 0.0)
+                    viewModel.saveEvent(geo, milliseconds)
                 }
             }
-            //viewModel.changeContent(binding.edit.text.toString())
-            //viewModel.save(location)
-            //viewModel.saveEvent()
             AndroidUtils.hideKeyboard(requireView())
             findNavController().navigateUp()
             val actionBar = (requireActivity() as AppCompatActivity).supportActionBar

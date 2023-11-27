@@ -1,6 +1,6 @@
 package com.example.mocklinkedin.repository
 
-import android.location.Location
+import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
 import com.example.mocklinkedin.dto.Post
@@ -13,13 +13,13 @@ interface PostRepository {
     suspend fun likeById(id: Long)
     suspend fun unlikeById(id: Long)
     suspend fun shareById(id: Long)
-    suspend fun save(post: Post, location: Location?, published: String)
+    suspend fun save(post: Post, location: Geo?, published: Long)
     suspend fun removeById(id: Long)
     suspend fun saveWithAttachment(
         post: Post,
         upload: MediaUpload,
-        location: Location?,
-        dateTimeString: String
+        location: Geo?,
+        dateTime: Long
     )
     suspend fun upload(upload: MediaUpload): Media
 

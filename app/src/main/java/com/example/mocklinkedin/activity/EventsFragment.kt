@@ -2,26 +2,20 @@ package com.example.mocklinkedin.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.adapter.EventsAdapter
-import com.example.mocklinkedin.adapter.OnInteractionListener
 import com.example.mocklinkedin.adapter.OnInteractionListenerEvents
-import com.example.mocklinkedin.adapter.PostsAdapter
 import com.example.mocklinkedin.databinding.FragmentEventsBinding
-import com.example.mocklinkedin.databinding.FragmentFeedBinding
 import com.example.mocklinkedin.dto.Event
-import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.viewmodel.EventViewModel
-import com.example.mocklinkedin.viewmodel.PostViewModel
-
 
 class EventsFragment : Fragment() {
 
@@ -95,7 +89,6 @@ class EventsFragment : Fragment() {
         }
 
         binding.floatingNewEventButton.setOnClickListener {
-            //requireParentFragment().findNavController().navigate(R.id.action_homeFragment_to_newPostFragment)
             val action = HomeFragmentDirections.actionHomeFragmentToNewPostFragment()
             requireParentFragment().findNavController().navigate(action)
             val actionBar = (activity as AppCompatActivity).supportActionBar

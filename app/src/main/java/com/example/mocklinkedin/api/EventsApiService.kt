@@ -1,7 +1,7 @@
 package com.example.mocklinkedin.api
 
-import android.location.Location
 import com.example.mocklinkedin.dto.Event
+import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.dto.Media
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -42,7 +42,7 @@ interface EventsApiService {
     suspend fun getById(@Path("id") id: Long): Response<Event>
 
     @POST("events")
-    suspend fun save(@Body event: Event, location: Location?, published: String): Response<Event>
+    suspend fun save(@Body event: Event, location: Geo, published: Long): Response<Event>
 
     @DELETE("events/{id}")
     suspend fun removeById(@Path("id") id: Long): Response<Unit>

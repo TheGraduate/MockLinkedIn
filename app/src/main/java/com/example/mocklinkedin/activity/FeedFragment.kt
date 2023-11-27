@@ -128,62 +128,6 @@ class FeedFragment : Fragment() {
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
             activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
         }
-
-       /* binding.root.setOnClickListener {
-            val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-            actionBar?.setDisplayHomeAsUpEnabled(true)
-        }*/
-
-        /*binding.save.setOnClickListener {
-            with(binding.content) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(
-                        requireContext(),
-                        context.getString(R.string.error_empty_content),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                }
-
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-            hideMessageMenu()
-        }
-
-        binding.cancel.setOnClickListener {
-            hideMessageMenu()
-            with(binding.content) {
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-        }*/
-
         return binding.root
     }
-
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val viewPager = view.findViewById<ViewPager2>(R.id.pager)
-        val tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
-
-        val fragmentList = listOf(BlankFragment1(), FeedFragment(), BlankFragment2())
-        val adapter = ViewPagerAdapter(requireActivity(), fragmentList)
-
-        viewPager.adapter = adapter
-
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            when (position) {
-                0 -> tab.text = "Fragment 1"
-                1 -> tab.text = "Feed"
-                2 -> tab.text = "Fragment 2"
-            }
-        }.attach()
-    }*/
-
 }

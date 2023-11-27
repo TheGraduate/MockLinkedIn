@@ -1,10 +1,11 @@
 package com.example.mocklinkedin.repository
 
-import android.location.Location
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.mocklinkedin.api.PostsApi
 import com.example.mocklinkedin.dao.PostDao
 import com.example.mocklinkedin.dto.Attachment
+import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
 import com.example.mocklinkedin.dto.Post
@@ -40,11 +41,12 @@ class PostRepositoryImpl(private val dao: PostDao): PostRepository {
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
+            Log.e("PostRepositoryImpl", "Exception: ${e.message}", e)
             throw UnknownError
         }
     }
 
-    override suspend fun save(post: Post, location: Location?, published: String) {
+    override suspend fun save(post: Post, location: Geo?, published: Long) {
 
         try {
             val response = PostsApi.service.save(post, location, published)
@@ -129,13 +131,13 @@ class PostRepositoryImpl(private val dao: PostDao): PostRepository {
     override suspend fun saveWithAttachment(
         post: Post,
         upload: MediaUpload,
-        location: Location?,
-        dateTimeString: String
+        location: Geo?,
+        dateTime: Long
     ) {
         try {
             val media = upload(upload)
             val postWithAttachment = post.copy(attachment = Attachment(media.id, AttachmentType.IMAGE))
-            save(postWithAttachment, location, dateTimeString)
+            save(postWithAttachment, location, dateTime)
         } catch (e: AppError) {
             throw e
         } catch (e: IOException) {

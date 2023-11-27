@@ -11,7 +11,7 @@ import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.databinding.FragmentHomeBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 class HomeFragment : Fragment() {
     private companion object {
         const val POSTS_TAG = "POSTS_TAG"

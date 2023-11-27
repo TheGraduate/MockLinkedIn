@@ -10,6 +10,7 @@ import com.example.mocklinkedin.R
 import com.example.mocklinkedin.dto.Event
 //import com.example.mocklinkedin.util.CalculateParametrs
 import com.example.mocklinkedin.databinding.EventCardBinding
+import com.example.mocklinkedin.util.CalculateParametrs
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -46,12 +47,12 @@ class EventViewHolder(
             published.text = formatter.format(event.published)
             content.text = event.content
             like.isChecked = event.likedByMe
-            like.text = "${event.likes}"
-            share.text = "${event.shares}"
+            //like.text = "${event.likes}"
+            //share.text = "${event.shares}"
             geo.text = event.geo.toString()
-            //like.text = CalculateParametrs(event.likes)
-            //share.text = CalculateParametrs(event.shares)
-            //viewCount.text = CalculateParametrs(event.views)
+            like.text = CalculateParametrs(event.likes)
+            share.text = CalculateParametrs(event.shares)
+            viewCount.text = CalculateParametrs(event.views)
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -82,15 +83,6 @@ class EventViewHolder(
             root.setOnClickListener {
                 onInteractionListenerEvents.onEvent(event)
             }
-
-            /* val url = "http://10.0.2.2:9999/avatars/{name}"
-             Glide.with(binding.avatar)
-                 .load(url)
-                 .circleCrop()
-                 //.placeholder(R.drawable.ic_loading_100dp)
-                 //.error(R.drawable.ic_error_100dp)
-                 .timeout(10_000)
-                 .into(binding.avatar)*/
         }
     }
 }
