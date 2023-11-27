@@ -15,7 +15,7 @@ data class PostEntity(
     val id: Long,
     val author: String,
     val content: String,
-    val published: Date,
+    val published: Long,
     val likedByMe: Boolean,
     val likes: Int = 0,
     var shares: Int = 0,

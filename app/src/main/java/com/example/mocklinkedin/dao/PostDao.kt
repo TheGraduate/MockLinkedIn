@@ -4,8 +4,9 @@ import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import com.example.mocklinkedin.entity.PostEntity
 import com.example.mocklinkedin.enumeration.AttachmentType
+import java.util.Date
 
-    @Dao
+@Dao
     interface PostDao {
         @Query("SELECT * FROM PostEntity ORDER BY id DESC")
         fun getAll(): Flow<List<PostEntity>>
@@ -45,6 +46,18 @@ import com.example.mocklinkedin.enumeration.AttachmentType
         suspend fun count(): Int
 
     }
+
+class Converters {
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let { Date(it) }
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
+    }
+}
 
     class Converter {
         @TypeConverter

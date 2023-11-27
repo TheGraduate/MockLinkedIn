@@ -1,5 +1,5 @@
 package com.example.mocklinkedin.enumeration
 
 enum class AttachmentType {
-    IMAGE
+    IMAGE, VIDEO, AUDIO
 }

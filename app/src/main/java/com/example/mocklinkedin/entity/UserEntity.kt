@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mocklinkedin.dto.User
+import java.util.Date
 
 @Entity
 data class UserEntity(
@@ -12,7 +13,7 @@ data class UserEntity(
     val login: String,
     val userName: String,
     val password: String,
-    val registrationDate: String,
+    val registrationDate: Long,
     @Embedded
     var avatar: AttachmentEmbeddable?,
 ) {

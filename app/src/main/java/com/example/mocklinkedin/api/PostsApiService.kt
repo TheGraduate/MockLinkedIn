@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "https://netomedia.ru" //"${BuildConfig.BASE_URL}/api/slow/"
+private const val BASE_URL = "https://netomedia.ru/api/" //"${BuildConfig.BASE_URL}/api/slow/"
 
 /*private val logging = HttpLoggingInterceptor().apply {
     if (BuildConfig.DEBUG) {

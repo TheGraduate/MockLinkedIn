@@ -30,12 +30,12 @@ import com.example.mocklinkedin.dto.User
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         suspend fun insert(users: List<UserEntity>)
 
-        @Query("SELECT * FROM UserEntity WHERE login = :login AND password = :password")
-        suspend fun authentication(login: String, password: String): UserEntity?
+        /*@Query("SELECT * FROM UserEntity WHERE login = :login AND password = :password")
+        suspend fun authentication(login: String, password: String): UserEntity?*/
 
-        //@Transaction
+       /* @Transaction
         @Insert(onConflict = OnConflictStrategy.REPLACE)
-        suspend fun registration(login: String, password: String, name: String)
+        suspend fun registration(login: String, password: String, name: String)*/
 
 
     }

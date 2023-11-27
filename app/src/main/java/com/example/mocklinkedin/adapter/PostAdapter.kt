@@ -10,6 +10,8 @@ import android.widget.PopupMenu
 import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.util.CalculateParametrs
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 interface OnInteractionListener {
     fun onLike(post: Post) {}
@@ -37,10 +39,12 @@ class PostViewHolder(
     private val binding: CardPostBinding,
     private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
+
+    private val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
     fun bind(post: Post) {
         binding.apply {
             author.text = post.author
-            published.text = post.published.toString()
+            published.text = formatter.format(post.published)
             content.text = post.content
             like.isChecked = post.likedByMe
             like.text = "${post.likes}"

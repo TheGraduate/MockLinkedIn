@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/editTextLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/choseAvatarButton"
@@ -16,7 +16,7 @@
         android:id="@+id/editTextFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
+        android:layout_below="@+id/editTextLogin"
         android:layout_marginTop="@dimen/button_margin_vertical"
         android:hint="@string/user_name" />
 
@@ -24,7 +24,7 @@
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextUsername"
+        android:layout_below="@+id/editTextFirstName"
         android:layout_marginTop="@dimen/button_margin_vertical"
         android:hint="@string/passwordHint"
         android:inputType="textPassword" />
@@ -33,7 +33,7 @@
         android:id="@+id/registrationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextFirstName"
+        android:layout_below="@+id/editTextPassword"
         android:layout_marginTop="@dimen/button_margin_vertical"
         android:text="@string/registration" />
 

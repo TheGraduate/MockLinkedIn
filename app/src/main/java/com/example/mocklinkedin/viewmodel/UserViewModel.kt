@@ -26,7 +26,7 @@ private val empty = User(
     login = "",
     name = "",
     password = "",
-    registrationDate = "now",
+    registrationDate = 0,
     avatar = null
 )
 

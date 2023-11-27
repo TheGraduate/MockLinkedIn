@@ -15,7 +15,7 @@ data class EventEntity(
     val id: Long,
     val author: String,
     val content: String,
-    val published: Date,
+    val published: Long,
     var likedByMe: Boolean,
     var likes: Int,
     var shares: Int,

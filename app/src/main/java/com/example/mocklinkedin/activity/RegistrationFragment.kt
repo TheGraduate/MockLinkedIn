@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -36,13 +37,23 @@ class RegistrationFragment : Fragment() {
         val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(false)
 
-        val username = binding.editTextUsername.text.toString()
+        val login = binding.editTextLogin.text.toString()
         val firstName = binding.editTextFirstName.text.toString()
         val password = binding.editTextPassword.text.toString()
 
         binding.registrationButton.setOnClickListener {
-            viewModel.saveUser(username, firstName, password)
-            findNavController().navigateUp()
+            if (login.isEmpty() || firstName.isEmpty() || password.isEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "One of fields is empty",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                viewModel.saveUser(login, firstName, password)
+                findNavController().navigateUp()
+            }
+            //viewModel.saveUser(username, firstName, password)
+            //findNavController().navigateUp()
         }
 
         pickPhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -62,7 +73,7 @@ class RegistrationFragment : Fragment() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             pickPhotoLauncher.launch(intent)
-            viewModel.saveUser(username, firstName, password)
+            viewModel.saveUser(login, firstName, password)
         }
 
         return binding.root

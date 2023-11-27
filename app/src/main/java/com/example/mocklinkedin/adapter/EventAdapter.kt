@@ -10,6 +10,8 @@ import com.example.mocklinkedin.R
 import com.example.mocklinkedin.dto.Event
 //import com.example.mocklinkedin.util.CalculateParametrs
 import com.example.mocklinkedin.databinding.EventCardBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 interface OnInteractionListenerEvents {
     fun onLikeEvent(event: Event) {}
@@ -36,10 +38,12 @@ class EventViewHolder(
     private val binding: EventCardBinding,
     private val onInteractionListenerEvents: OnInteractionListenerEvents
 ) : RecyclerView.ViewHolder(binding.root) {
+
+    private val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
     fun bind(event: Event) {
         binding.apply {
             author.text = event.author
-            published.text = event.published.toString()
+            published.text = formatter.format(event.published)
             content.text = event.content
             like.isChecked = event.likedByMe
             like.text = "${event.likes}"
