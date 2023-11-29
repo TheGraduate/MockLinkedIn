@@ -3,38 +3,36 @@ package com.example.mocklinkedin.entity
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.mocklinkedin.dto.Attachment
 import com.example.mocklinkedin.dto.Event
-import com.example.mocklinkedin.dto.Post
-import com.example.mocklinkedin.enumeration.AttachmentType
-import java.util.Date
 
 @Entity
 data class EventEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
+    val authorId: Long,
     val author: String,
     val content: String,
     val published: Long,
     var likedByMe: Boolean,
-    var likes: Int,
-    var shares: Int,
-    var views: Int,
+    //var likes: Int,
+    //var shares: Int,
+    //var views: Int,
     @Embedded
-    var geo: GeoEmbeddable?,
+    var coords: GeoEmbeddable?,
     @Embedded
     var attachment: AttachmentEmbeddable?,
 ) {
     fun toDto() = Event(
         id,
+        authorId,
         author,
         content,
         published,
         likedByMe,
-        likes,
-        shares,
-        views,
-        geo?.toDto(),
+        likes = 0,
+        shares = 0,
+        views = 0,
+        coords?.toDto(),
         attachment?.toDto()
     )
 
@@ -42,14 +40,15 @@ data class EventEntity(
         fun fromDto(dto: Event) =
             EventEntity(
                 dto.id,
+                dto.authorId,
                 dto.author,
                 dto.content,
                 dto.published,
                 dto.likedByMe,
-                dto.likes,
-                dto.shares,
-                dto.views,
-                GeoEmbeddable.fromDto(dto.geo),
+                //dto.likes,
+                //dto.shares,
+                //dto.views,
+                GeoEmbeddable.fromDto(dto.coords),
                 AttachmentEmbeddable.fromDto(dto.attachment))
     }
 }

@@ -139,7 +139,7 @@ class NewPostFragment : Fragment()  {
             val milliseconds = currentDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
             viewModel.changeContent(binding.edit.text.toString())
-            val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE,) as LocationManager
+            val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
             if (ActivityCompat.checkSelfPermission(
                     requireContext(),
                     Manifest.permission.ACCESS_FINE_LOCATION

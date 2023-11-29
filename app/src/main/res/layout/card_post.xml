@@ -9,13 +9,12 @@
         android:id="@+id/geo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/standart_geolocation"
         app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintStart_toEndOf="@+id/published"
-        app:layout_constraintTop_toBottomOf="@+id/author" />
+        app:layout_constraintStart_toEndOf="@+id/coords"
+        app:layout_constraintTop_toBottomOf="@+id/author"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/author"
@@ -151,6 +150,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/author"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/coords"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/content"
+        app:layout_constraintStart_toEndOf="@+id/published"
+        app:layout_constraintTop_toBottomOf="@+id/author"
+        app:srcCompat="@drawable/baseline_location_on_48" />
     <!--app:srcCompat="@drawable/ic_baseline_more_vert_24"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

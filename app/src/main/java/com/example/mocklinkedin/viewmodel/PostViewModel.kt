@@ -23,17 +23,19 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.Date
 
 private val empty = Post(
     id = 0,
+    authorId = 0,
     author = "",
     content = "",
-    published = 0,
+    published = Date(),
     likedByMe = false,
     likes = 0,
     shares = 0,
     views = 0,
-    geo = null,
+    coords = null,
     attachment = null
 )
 
@@ -177,7 +179,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun shareById(id: Long) {
+    /*fun shareById(id: Long) {
         viewModelScope.launch {
             try {
 
@@ -187,7 +189,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
                 _dataState.value = FeedModelState(error = true)
             }
         }
-    }
+    }*/
 
     /*fun showAll() = viewModelScope.launch {
         try {

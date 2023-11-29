@@ -18,8 +18,8 @@
     <string name="back">Back</string>
     <string name="enter_your_post_content">Enter your post content</string>
     <string name="post">Post</string>
-    <!--<string name="hello_blank_fragment1" translatable="false">Hello blank fragment 1</string>
-    <string name="hello_blank_fragment2" translatable="false">Hello blank fragment 2</string>-->
+    <!--<string username="hello_blank_fragment1" translatable="false">Hello blank fragment 1</string>
+    <string username="hello_blank_fragment2" translatable="false">Hello blank fragment 2</string>-->
     <string name="feed">Feed</string>
     <string name="events">Events</string>
     <string name="users">Users</string>
@@ -31,7 +31,7 @@
     <string name="user_avatar">User Avatar</string>
     <string name="change_avatar">Change Avatar</string>
 
-    <!--<string name="last_name">Last Name</string>-->
+    <!--<string username="last_name">Last Name</string>-->
     <string name="user_name_string">Name</string>
     <string name="user_name">Name</string>
 
@@ -41,12 +41,12 @@
     <string name="registration_date_string">Registration Date</string>
     <string name="registration_date">Registration Date</string>
 
-    <!--<string name="birth_date">Birth Date</string>-->
+    <!--<string username="birth_date">Birth Date</string>-->
 
     <string name="save_changes">Save Changes</string>
-    <!--<string name="lastNameString">Lastname</string>-->
+    <!--<string username="lastNameString">Lastname</string>-->
 
-    <!--<string name="birthDateString">Birth date</string>-->
+    <!--<string username="birthDateString">Birth date</string>-->
     <string name="registrationSuggestion">Don\'t you have an account? You can register here.</string>
     <string name="registration">Registration</string>
     <string name="loginTitle">Login</string>
@@ -56,8 +56,8 @@
     <string name="passwordHint">Password</string>
 
     <string name="enterButton">Enter</string>
-    <!--<string name="name">Name</string>-->
-    <!--<string name="lastName">Lastname</string>-->
+    <!--<string username="username">Name</string>-->
+    <!--<string username="lastName">Lastname</string>-->
     <string name="existUser">User not found</string>
     <string name="empty_posts">Empty</string>
     <string name="show_new_posts">New posts</string>

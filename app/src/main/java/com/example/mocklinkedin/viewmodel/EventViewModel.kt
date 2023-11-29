@@ -27,6 +27,7 @@ import java.io.File
 
 private val empty = Event(
     id = 0,
+    authorId = 0,
     author = "",
     content = "",
     published = 0,
@@ -34,7 +35,7 @@ private val empty = Event(
     likes = 0,
     shares = 0,
     views = 0,
-    geo = null,
+    coords = null,
     attachment = null
 )
 
@@ -160,7 +161,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun shareEventById(id: Long) {
+   /* fun shareEventById(id: Long) {
         viewModelScope.launch {
             try {
 
@@ -170,7 +171,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
                 _dataState.value = FeedModelState(error = true)
             }
         }
-    }
+    }*/
     fun removeEventById(id: Long) {
         viewModelScope.launch {
             try {

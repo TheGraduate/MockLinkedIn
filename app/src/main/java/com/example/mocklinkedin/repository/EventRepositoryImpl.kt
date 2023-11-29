@@ -168,12 +168,12 @@ class EventRepositoryImpl(
 
     /*    override fun upload(upload: MediaUpload): Media {
             val media = MultipartBody.Part.createFormData(
-                "file", upload.file.name, upload.file.asRequestBody()
+                "file", upload.file.username, upload.file.asRequestBody()
             )
 
         }*/
 
-    override suspend fun shareEventById(id: Long) {
+   /* override suspend fun shareEventById(id: Long) {
         try {
             val response = EventsApi.service.shareById(id)
             if (!response.isSuccessful) {
@@ -185,7 +185,7 @@ class EventRepositoryImpl(
         } catch (e: Exception) {
             throw UnknownError()
         }
-    }
+    }*/
 
    /* private fun syncEvent() {
         with(prefs.edit()) {

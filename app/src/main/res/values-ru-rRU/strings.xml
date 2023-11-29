@@ -35,12 +35,12 @@
 
     <string name="login_string">Логин</string>
     <string name="login">Логин</string>
-    <!--<string name="last_name">Фамилия</string>-->
-    <!--<string name="birth_date">Дата рождения</string>-->
+    <!--<string username="last_name">Фамилия</string>-->
+    <!--<string username="birth_date">Дата рождения</string>-->
     <string name="registration_date_string">Дата регистрации</string>
     <string name="registration_date">Дата регистрации</string>
 
-   <!-- <string name="birthDateString">Дата рождения</string>-->
+   <!-- <string username="birthDateString">Дата рождения</string>-->
 
     <string name="save_changes">Сохранить изменения</string>
     <string name="registrationSuggestion">У вас нет аккаунта? Вы можете зарегистрироваться здесь.</string>

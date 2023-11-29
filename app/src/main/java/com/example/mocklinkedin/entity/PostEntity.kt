@@ -13,44 +13,48 @@ import java.util.Date
 data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
+    val authorId: Long,
     val author: String,
     val content: String,
     val published: Long,
     val likedByMe: Boolean,
-    val likes: Int = 0,
-    var shares: Int = 0,
-    var views: Int = 0,
+    //val likes: Int = 0,
+    //var shares: Int = 0,
+    //var views: Int = 0,
     //val latitude: Double = 0.0,
     //val longitude: Double = 0.0,
     @Embedded
-    var geo: GeoEmbeddable?,
+    var coords: GeoEmbeddable?,
     @Embedded
     var attachment: AttachmentEmbeddable?,
 ) {
     fun toDto() = Post(
         id,
+        authorId ,
         author,
         content,
-        published,
+        Date(published),
         likedByMe,
-        likes,
-        shares,
-        views,
-        geo?.toDto(),
+        likes = 0,
+        shares = 0,
+        views = 0,
+        coords?.toDto(),
         attachment?.toDto()
     )
 
     companion object {
         fun fromDto(dto: Post) =
-            PostEntity(dto.id,
+            PostEntity(
+                dto.id,
+                dto.authorId,
                 dto.author,
                 dto.content,
-                dto.published,
+                dto.published.time ,
                 dto.likedByMe,
-                dto.likes,
-                dto.shares,
-                dto.views,
-                GeoEmbeddable.fromDto(dto.geo),
+                //dto.likes,
+                //dto.shares,
+                //dto.views,
+                GeoEmbeddable.fromDto(dto.coords),
                 AttachmentEmbeddable.fromDto(dto.attachment))
 
     }

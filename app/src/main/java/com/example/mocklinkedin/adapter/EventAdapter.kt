@@ -49,10 +49,10 @@ class EventViewHolder(
             like.isChecked = event.likedByMe
             //like.text = "${event.likes}"
             //share.text = "${event.shares}"
-            geo.text = event.geo.toString()
-            like.text = CalculateParametrs(event.likes)
-            share.text = CalculateParametrs(event.shares)
-            viewCount.text = CalculateParametrs(event.views)
+            geo.text = event.coords.toString()
+            like.text = event.likes?.let { CalculateParametrs(it) }
+            share.text = event.shares?.let { CalculateParametrs(it) }
+            viewCount.text = event.views?.let { CalculateParametrs(it) }
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {

@@ -1,0 +1,24 @@
+[33md024941[m[33m ([m[1;36mHEAD -> [m[1;32mnew_branch_name[m[33m)[m HEAD@{0}: checkout: moving from 2626fbef1773ab09a1887be9df0cc5fecd1739ed to new_branch_name
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{1}: checkout: moving from master to 2626fbef1773ab09a1887be9df0cc5fecd1739ed
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{2}: checkout: moving from master to master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{3}: branch: Reset to origin/master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{4}: checkout: moving from 0b36a7f29b95ee5a243c58f69cccc1794b1057bb to master
+[33m0b36a7f[m HEAD@{5}: revert: Revert "status:work"
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{6}: checkout: moving from master to 2626fbef1773ab09a1887be9df0cc5fecd1739ed
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{7}: checkout: moving from 3493635703e1ea313990f97db5547ee3d1a78518 to master
+[33m3493635[m HEAD@{8}: commit (amend): status:work
+[33m304b8f3[m HEAD@{9}: commit (amend): status:work
+[33m6aea658[m HEAD@{10}: commit: status:work
+[33md024941[m[33m ([m[1;36mHEAD -> [m[1;32mnew_branch_name[m[33m)[m HEAD@{11}: commit: status:work
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{12}: checkout: moving from master to 2626fbef1773ab09a1887be9df0cc5fecd1739ed
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{13}: reset: moving to 2626fbef1773ab09a1887be9df0cc5fecd1739ed
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{14}: checkout: moving from master to master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{15}: branch: Reset to origin/master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{16}: checkout: moving from master to master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{17}: branch: Reset to origin/master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{18}: checkout: moving from 2626fbef1773ab09a1887be9df0cc5fecd1739ed to master
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{19}: checkout: moving from master to 2626fbef1773ab09a1887be9df0cc5fecd1739ed
+[33m2626fbe[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{20}: commit: status:work
+[33md0f68d5[m HEAD@{21}: commit: status:work
+[33m904027d[m HEAD@{22}: commit: status:work
+[33m0171f62[m HEAD@{23}: commit (initial): status:work

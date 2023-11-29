@@ -40,7 +40,7 @@ class PostViewHolder(
     private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+    private val formatter = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
     fun bind(post: Post) {
         binding.apply {
             author.text = post.author
@@ -49,10 +49,11 @@ class PostViewHolder(
             like.isChecked = post.likedByMe
             like.text = "${post.likes}"
             share.text = "${post.shares}"
-            like.text = CalculateParametrs(post.likes)
-            share.text = CalculateParametrs(post.shares)
-            viewCount.text = CalculateParametrs(post.views)
-            geo.text = post.geo.toString()
+            like.text = post.likes?.let { CalculateParametrs(it) }
+            share.text = post.shares?.let { CalculateParametrs(it) }
+            viewCount.text = post.views?.let { CalculateParametrs(it) }
+            geo.text = "${post.coords?.latitude.toString()} : ${post.coords?.longitude.toString()}"
+                //.coords.toString()
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -84,7 +85,7 @@ class PostViewHolder(
                 onInteractionListener.onPost(post)
             }
 
-           /* val url = "http://10.0.2.2:9999/avatars/{name}"
+           /* val url = "http://10.0.2.2:9999/avatars/{username}"
             Glide.with(binding.avatar)
                 .load(url)
                 .circleCrop()

@@ -167,7 +167,7 @@ class PostRepositoryImpl(private val dao: PostDao): PostRepository {
         }
     }
 
-    override suspend fun shareById(id: Long) {
+   /* override suspend fun shareById(id: Long) {
         try {
             val response = PostsApi.service.shareById(id)
             if (!response.isSuccessful) {
@@ -179,7 +179,7 @@ class PostRepositoryImpl(private val dao: PostDao): PostRepository {
         } catch (e: Exception) {
             throw UnknownError()
         }
-    }
+    }*/
 
 }
 

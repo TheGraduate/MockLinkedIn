@@ -83,9 +83,9 @@ class PostRepositorySharedPrefsImpl(
     }
 
     override  fun upload(upload: MediaUpload): Media {
-            val media = upload.file.name
+            val media = upload.file.username
                 MultipartBody.Part.createFormData(
-                "file", upload.file.name, upload.file.asRequestBody()
+                "file", upload.file.username, upload.file.asRequestBody()
             )
         val response = PostsApi.service.upload(media)
 
@@ -95,7 +95,7 @@ class PostRepositorySharedPrefsImpl(
 */
 /*    override fun upload(upload: MediaUpload): Media {
         val media = MultipartBody.Part.createFormData(
-            "file", upload.file.name, upload.file.asRequestBody()
+            "file", upload.file.username, upload.file.asRequestBody()
         )
 
     }*//*

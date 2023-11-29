@@ -24,9 +24,9 @@ import java.io.File
 private val empty = User(
     id = 0,
     login = "",
-    name = "",
+    username = "",
     password = "",
-    registrationDate = 0,
+    //registrationDate = 0,
     avatar = null
 )
 

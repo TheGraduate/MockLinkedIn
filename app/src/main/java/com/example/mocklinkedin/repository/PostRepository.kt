@@ -12,7 +12,7 @@ interface PostRepository {
     suspend fun getAll()
     suspend fun likeById(id: Long)
     suspend fun unlikeById(id: Long)
-    suspend fun shareById(id: Long)
+    //suspend fun shareById(id: Long)
     suspend fun save(post: Post, location: Geo?, published: Long)
     suspend fun removeById(id: Long)
     suspend fun saveWithAttachment(

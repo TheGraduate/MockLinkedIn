@@ -4,25 +4,24 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mocklinkedin.dto.User
-import java.util.Date
 
 @Entity
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val login: String,
-    val userName: String,
+    var username: String,
     val password: String,
-    val registrationDate: Long,
+    //val registrationDate: Long,
     @Embedded
     var avatar: AttachmentEmbeddable?,
 ) {
     fun toDto() = User(
         id,
         login,
-        userName,
+        username = "Username",
         password,
-        registrationDate,
+        //registrationDate,
         avatar?.toDto()
     )
 
@@ -31,9 +30,9 @@ data class UserEntity(
             UserEntity(
                 dto.id,
                 dto.login,
-                dto.name,
+                dto.username,
                 dto.password,
-                dto.registrationDate,
+                //dto.registrationDate,
                 AttachmentEmbeddable.fromDto(dto.avatar))
 
     }

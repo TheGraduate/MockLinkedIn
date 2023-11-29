@@ -60,7 +60,7 @@ class EventsFragment : Fragment() {
             }
 
             override fun onShareEvent(event: Event) {
-                viewModel.shareEventById(event.id)
+                //viewModel.shareEventById(event.id)
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, event.content)

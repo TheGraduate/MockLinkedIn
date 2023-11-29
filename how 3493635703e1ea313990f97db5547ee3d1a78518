@@ -1,0 +1,70 @@
+[33mcommit d0249417158f74deaf4b54e44563c8ee12b031f5[m[33m ([m[1;31morigin/new_branch_name1[m[33m, [m[1;32mnew_branch_name1[m[33m)[m
+Author: MrComp <daran.gagan@mail.ru>
+Date:   Sun Nov 12 22:52:40 2023 +0300
+
+    status:work
+    13 фрагментов (фрагменты: поста, авторизации, регистрации, новый ивент, ивент,лента постов, профиль, новый пост, лента ивентов, лента пользователей, редактирование поста, редактирование ивентав)
+    version 0.71
+    commit 5
+
+[1mdiff --git a/app/build.gradle.kts b/app/build.gradle.kts[m
+[1mindex b1df2d8..49879a8 100644[m
+[1m--- a/app/build.gradle.kts[m
+[1m+++ b/app/build.gradle.kts[m
+[36m@@ -93,6 +93,11 @@[m [mdependencies {[m
+     //implementation("com.google.android.gms:play-services-cast-framework:21.3.0")[m
+     //implementation("androidx.glance:glance:1.0.0")[m
+ [m
+[32m+[m[32m    implementation ("com.squareup.retrofit2:retrofit:2.9.0")[m
+[32m+[m[32m    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")[m
+[32m+[m[32m    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")[m
+[32m+[m[32m    implementation ("androidx.room:room-runtime:2.5.0")[m
+[32m+[m
+     testImplementation("junit:junit:4.13.2")[m
+     androidTestImplementation("androidx.test.ext:junit:1.1.5")[m
+     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")[m
+[1mdiff --git a/app/src/main/java/com/example/mocklinkedin/activity/EventFragment.kt b/app/src/main/java/com/example/mocklinkedin/activity/EventFragment.kt[m
+[1mindex 5e12e55..24e7e5d 100644[m
+[1m--- a/app/src/main/java/com/example/mocklinkedin/activity/EventFragment.kt[m
+[1m+++ b/app/src/main/java/com/example/mocklinkedin/activity/EventFragment.kt[m
+[36m@@ -54,7 +54,7 @@[m [mclass EventFragment : Fragment() {[m
+         })[m
+ [m
+         viewModel.data.observe(viewLifecycleOwner) { events ->[m
+[31m-            val event = events.find { it.id == args.postId.toLong() } ?: run {[m
+[32m+[m[32m            val event = events.objects.find { it.id == args.postId.toLong() } ?: run {[m
+                 findNavController().navigateUp()[m
+                 return@observe[m
+             }[m
+[1mdiff --git a/app/src/main/java/com/example/mocklinkedin/activity/EventsFragment.kt b/app/src/main/java/com/example/mocklinkedin/activity/EventsFragment.kt[m
+[1mindex 6eb7f5b..c1b7856 100644[m
+[1m--- a/app/src/main/java/com/example/mocklinkedin/activity/EventsFragment.kt[m
+[1m+++ b/app/src/main/java/com/example/mocklinkedin/activity/EventsFragment.kt[m
+[36m@@ -46,7 +46,11 @@[m [mclass EventsFragment : Fragment() {[m
+             }[m
+ [m
+             override fun onLikeEvent(event: Event) {[m
+[31m-                viewModel.likeEventById(event.id)[m
+[32m+[m[32m                if (event.likedByMe) {[m
+[32m+[m[32m                    viewModel.unlikeEventById(event.id)[m
+[32m+[m[32m                } else {[m
+[32m+[m[32m                    viewModel.likeEventById(event.id)[m
+[32m+[m[32m                }[m
+             }[m
+ [m
+             override fun onRemoveEvent(event: Event) {[m
+[36m@@ -75,7 +79,7 @@[m [mclass EventsFragment : Fragment() {[m
+ [m
+         binding.list.adapter = adapter[m
+         viewModel.data.observe(viewLifecycleOwner) { events ->[m
+[31m-            adapter.submitList(events)[m
+[32m+[m[32m            adapter.submitList(events.objects)[m
+         }[m
+ [m
+         viewModel.edited.observe(viewLifecycleOwner) { event ->[m
+[1mdiff --git a/app/src/main/java/com/example/mocklinkedin/activity/FeedFragment.kt b/app/src/main/java/com/example/mocklinkedin/activity/FeedFragment.kt[m
+[1mindex 1b9eb4d..a056e2c 100644[m
+[1m--- a/app/src/main/java/com/example/mocklinkedin/activity/FeedFragment.kt[m
+[1m+++ b/app/src/main/java/com/example/mocklinkedin/activity/FeedFragment.kt[m
+[36m@@ -12,10 +12,13 @@[m [mimport android.view.LayoutInflater[m
+ import android.view.Vi

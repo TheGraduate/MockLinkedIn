@@ -12,7 +12,7 @@ interface EventRepository {
     fun getNewerCount(id: Long): Flow<Int>
     suspend fun likeEventById(id: Long)
     suspend fun unlikeEventById(id: Long)
-    suspend fun shareEventById(id: Long)
+    //suspend fun shareEventById(id: Long)
     suspend fun saveEvent(event: Event, location: Geo, published: Long)
     suspend fun removeEventById(id: Long)
     suspend fun saveEventWithAttachment(
