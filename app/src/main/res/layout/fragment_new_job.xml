@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/job"
+        android:textColor="@color/purple_700"
+        android:textSize="30dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="positionAtCompany,dateStartOfWork,dateEndOfWork,companyName,job" />
+
+    <EditText
+        android:id="@+id/companyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="@string/name_of_company"
+        android:autofillHints="@string/position_at_company"/>
+
+    <EditText
+        android:id="@+id/positionAtCompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="@string/position_at_company"
+        android:autofillHints="@string/position_at_company"/>
+
+    <EditText
+        android:id="@+id/dateStartOfWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/date_start_of_work"
+        android:autofillHints="@string/date_start_of_work" />
+
+    <EditText
+        android:id="@+id/dateEndOfWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/date_end_of_work"
+        android:autofillHints="@string/position_at_company"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/footer"
+        android:layout_width="21dp"
+        android:layout_height="11dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
+
+    <ImageView
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/baseline_check_circle_outline_24"
+        android:layout_gravity="end"
+        />
+
+
+</LinearLayout>

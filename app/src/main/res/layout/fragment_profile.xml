@@ -11,7 +11,7 @@
     tools:context=".activity.ProfileFragment">
 
     <LinearLayout
-        android:layout_width="390dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -24,7 +24,7 @@
             android:src="@drawable/baseline_account_box_24" />
 
         <LinearLayout
-            android:layout_width="247dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/user_name"
+                android:autofillHints="@string/user_name"
                 android:inputType="text" />
 
             <EditText
@@ -40,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login"
+                android:autofillHints="@string/login"
                 android:inputType="text" />
 
             <EditText
@@ -48,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:ems="5"
                 android:hint="@string/passwordHint"
+                android:autofillHints="@string/passwordHint"
                 android:inputType="textPassword" />
 
             <Button
@@ -61,10 +64,16 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/divider2"
+        android:id="@+id/divider"
         android:layout_width="wrap_content"
-        android:layout_height="7dp"
+        android:layout_height="4dp"
         android:background="?android:attr/listDivider" />
+
+    <Button
+        android:id="@+id/newJobButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_job" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"

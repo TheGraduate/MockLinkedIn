@@ -63,4 +63,5 @@
     <string name="date_end_of_work">Дата конца работы</string>
     <string name="job">Работа:</string>
     <string name="standart_geolocation">0.0 0.0</string>
+    <string name="new_job">Добавить</string>
 </resources>

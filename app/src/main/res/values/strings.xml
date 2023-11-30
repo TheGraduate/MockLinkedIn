@@ -70,4 +70,5 @@
     <string name="date_end_of_work">Date end of work</string>
     <string name="job">Job:</string>
     <string name="standart_geolocation">0.0 0.0</string>
+    <string name="new_job">Add</string>
 </resources>

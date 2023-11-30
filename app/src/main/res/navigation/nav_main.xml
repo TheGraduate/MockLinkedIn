@@ -58,7 +58,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.mocklinkedin.activity.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_newJobFragment"
+            app:destination="@id/newJobFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newPostFragment"
         android:name="com.example.mocklinkedin.activity.NewPostFragment"
@@ -88,11 +92,6 @@
             app:destination="@id/newPostFragment" />
     </fragment>
     <fragment
-        android:id="@+id/usersListFragment"
-        android:name="com.example.mocklinkedin.activity.UsersListFragment"
-        android:label="UsersListFragment"
-        tools:layout="@layout/users_list_fragment"/>
-    <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.mocklinkedin.activity.LoginFragment"
         android:label="LoginFragment"
@@ -106,4 +105,9 @@
         android:name="com.example.mocklinkedin.activity.RegistrationFragment"
         android:label="RegistrationFragment"
         tools:layout="@layout/fragment_registration"/>
+    <fragment
+        android:id="@+id/newJobFragment"
+        android:name="com.example.mocklinkedin.activity.NewJobFragment"
+        android:label="NewJobFragment"
+        tools:layout="@layout/fragment_new_job"/>
 </navigation>

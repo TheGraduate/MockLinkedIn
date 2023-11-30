@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/geo"
@@ -45,10 +50,12 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="avatar,published,menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="80dp" />
 
     <TextView
         android:id="@+id/content"
@@ -67,10 +74,12 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/footer"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="content,attachmentImage"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="328dp" />
 
     <TextView
         android:id="@+id/viewCount"
@@ -95,7 +104,7 @@
         android:contentDescription="@string/description_post_like"
         app:icon="@drawable/ic_like_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
+        app:layout_constraintTop_toBottomOf="@+id/footer" />
 
     <!--app:srcCompat="@drawable/ic_baseline_share_24"-->
 
@@ -110,7 +119,7 @@
         android:contentDescription="@string/description_post_share"
         app:icon="@drawable/ic_share_24"
         app:layout_constraintStart_toEndOf="@+id/like"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
+        app:layout_constraintTop_toBottomOf="@+id/footer" />
 
     <ImageView
         android:id="@+id/view"
@@ -123,7 +132,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toEndOf="@+id/share"
-        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/footer"
         app:srcCompat="@drawable/ic_baseline_visibility_24" />
 
     <ImageView
@@ -161,4 +170,17 @@
         app:srcCompat="@drawable/baseline_location_on_48" />
     <!--app:srcCompat="@drawable/ic_baseline_more_vert_24"-->
 
+    <ImageView
+        android:id="@+id/attachmentImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintVertical_bias="0.398"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -7,18 +7,30 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.mocklinkedin.dao.Converters
 import com.example.mocklinkedin.dao.EventDao
+import com.example.mocklinkedin.dao.JobDao
 import com.example.mocklinkedin.dao.PostDao
 import com.example.mocklinkedin.dao.UserDao
 import com.example.mocklinkedin.entity.EventEntity
+import com.example.mocklinkedin.entity.JobEntity
 import com.example.mocklinkedin.entity.PostEntity
 import com.example.mocklinkedin.entity.UserEntity
 
-@Database(entities = [PostEntity::class, UserEntity::class, EventEntity::class], version = 3, exportSchema = false)
+@Database(
+    entities = [
+        PostEntity::class,
+        UserEntity::class,
+        EventEntity::class,
+        JobEntity::class
+    ],
+    version = 5,
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun userDao(): UserDao
     abstract fun eventDao(): EventDao
+    abstract fun jobDao(): JobDao
 
     companion object {
         @Volatile

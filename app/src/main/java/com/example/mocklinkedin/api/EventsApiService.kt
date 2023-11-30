@@ -15,8 +15,9 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
+import com.example.mocklinkedin.constants.Constants.Companion.BASE_URL
 
-private const val BASE_URL = "https://netomedia.ru" //"${BuildConfig.BASE_URL}/api/slow/"
+//private const val BASE_URL = "https://netomedia.ru/api/" //"${BuildConfig.BASE_URL}/api/slow/"
 
 /*private val logging = HttpLoggingInterceptor().apply {
     if (BuildConfig.DEBUG) {

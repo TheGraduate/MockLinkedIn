@@ -9,8 +9,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import com.example.mocklinkedin.constants.Constants.Companion.BASE_URL
 
-private const val BASE_URL = "https://netomedia.ru/api/" //"${BuildConfig.BASE_URL}/api/slow/"
+//private const val BASE_URL = "https://netomedia.ru/api/" //"${BuildConfig.BASE_URL}/api/slow/"
 
 /*private val logging = HttpLoggingInterceptor().apply {
     if (BuildConfig.DEBUG) {

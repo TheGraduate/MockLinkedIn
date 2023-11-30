@@ -1,15 +1,18 @@
 package com.example.mocklinkedin.adapter
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import com.example.mocklinkedin.databinding.CardPostBinding
-import android.widget.PopupMenu
-import com.example.mocklinkedin.dto.Post
+import com.bumptech.glide.Glide
 import com.example.mocklinkedin.R
-import com.example.mocklinkedin.util.CalculateParametrs
+import com.example.mocklinkedin.constants.Constants.Companion.BASE_URL
+import com.example.mocklinkedin.databinding.CardPostBinding
+import com.example.mocklinkedin.dto.Post
+import com.example.mocklinkedin.view.load
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -47,13 +50,26 @@ class PostViewHolder(
             published.text = formatter.format(post.published)
             content.text = post.content
             like.isChecked = post.likedByMe
-            like.text = "${post.likes}"
-            share.text = "${post.shares}"
-            like.text = post.likes?.let { CalculateParametrs(it) }
-            share.text = post.shares?.let { CalculateParametrs(it) }
-            viewCount.text = post.views?.let { CalculateParametrs(it) }
+            //like.text = "${post.likes}"
+            //share.text = "${post.shares}"
+            //like.text = post.likes?.let { CalculateParametrs(it) }
+            //share.text = post.shares?.let { CalculateParametrs(it) }
+            //viewCount.text = post.views?.let { CalculateParametrs(it) }
+            //avatar.loadCircleCrop("BASE_URL${post.authorAvatar}")
             geo.text = "${post.coords?.latitude.toString()} : ${post.coords?.longitude.toString()}"
-                //.coords.toString()
+
+            if (post.attachment == null) {
+                attachmentImage.visibility = View.GONE
+            } else {
+                attachmentImage.visibility = View.VISIBLE
+                post.attachment.let { attachmentImage.load(BASE_URL + it.url) }
+            }
+
+            Glide.with(binding.avatar)
+                .load(post.authorAvatar)
+                .circleCrop()
+                .timeout(30_000)
+                .into(binding.avatar)
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {

@@ -6,7 +6,7 @@ import com.example.mocklinkedin.entity.PostEntity
 import com.example.mocklinkedin.enumeration.AttachmentType
 import java.util.Date
 
-@Dao
+    @Dao
     interface PostDao {
         @Query("SELECT * FROM PostEntity ORDER BY id DESC")
         fun getAll(): Flow<List<PostEntity>>
@@ -32,12 +32,14 @@ import java.util.Date
             """)
         suspend fun likeById(id: Long)*/
 
-    @Query("""
+        @Query(
+            """
             UPDATE PostEntity SET
             likedByMe = CASE WHEN likedByMe THEN 0 ELSE 1 END
             WHERE id = :id
-            """)
-    suspend fun likeById(id: Long)
+            """
+        )
+        suspend fun likeById(id: Long)
 
         @Query("DELETE FROM PostEntity WHERE id = :id")
         suspend fun removeById(id: Long)

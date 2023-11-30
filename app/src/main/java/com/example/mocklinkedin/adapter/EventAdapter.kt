@@ -1,16 +1,16 @@
 package com.example.mocklinkedin.adapter
 
+//import com.example.mocklinkedin.util.CalculateParametrs
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mocklinkedin.R
-import com.example.mocklinkedin.dto.Event
-//import com.example.mocklinkedin.util.CalculateParametrs
 import com.example.mocklinkedin.databinding.EventCardBinding
-import com.example.mocklinkedin.util.CalculateParametrs
+import com.example.mocklinkedin.dto.Event
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -40,7 +40,7 @@ class EventViewHolder(
     private val onInteractionListenerEvents: OnInteractionListenerEvents
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+    private val formatter = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
     fun bind(event: Event) {
         binding.apply {
             author.text = event.author
@@ -50,9 +50,16 @@ class EventViewHolder(
             //like.text = "${event.likes}"
             //share.text = "${event.shares}"
             geo.text = event.coords.toString()
-            like.text = event.likes?.let { CalculateParametrs(it) }
-            share.text = event.shares?.let { CalculateParametrs(it) }
-            viewCount.text = event.views?.let { CalculateParametrs(it) }
+            //like.text = event.likes?.let { CalculateParametrs(it) }
+            //share.text = event.shares?.let { CalculateParametrs(it) }
+            //viewCount.text = event.views?.let { CalculateParametrs(it) }
+            geo.text = "${event.coords?.latitude.toString()} : ${event.coords?.longitude.toString()}"
+
+            Glide.with(binding.avatar)
+                .load(event.authorAvatar)
+                .circleCrop()
+                .timeout(30_000)
+                .into(binding.avatar)
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {

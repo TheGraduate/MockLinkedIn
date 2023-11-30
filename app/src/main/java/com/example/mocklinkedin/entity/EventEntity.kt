@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mocklinkedin.dto.Event
+import java.util.Date
 
 @Entity
 data class EventEntity(
@@ -11,6 +12,7 @@ data class EventEntity(
     val id: Long,
     val authorId: Long,
     val author: String,
+    val authorAvatar: String?,
     val content: String,
     val published: Long,
     var likedByMe: Boolean,
@@ -26,12 +28,13 @@ data class EventEntity(
         id,
         authorId,
         author,
+        authorAvatar,
         content,
-        published,
+        Date(published),
         likedByMe,
-        likes = 0,
-        shares = 0,
-        views = 0,
+        //likes = 0,
+        //shares = 0,
+        //views = 0,
         coords?.toDto(),
         attachment?.toDto()
     )
@@ -42,8 +45,9 @@ data class EventEntity(
                 dto.id,
                 dto.authorId,
                 dto.author,
+                dto.authorAvatar,
                 dto.content,
-                dto.published,
+                dto.published.time,
                 dto.likedByMe,
                 //dto.likes,
                 //dto.shares,

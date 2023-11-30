@@ -29,12 +29,13 @@ private val empty = Post(
     id = 0,
     authorId = 0,
     author = "",
+    authorAvatar = "",
     content = "",
     published = Date(),
     likedByMe = false,
-    likes = 0,
-    shares = 0,
-    views = 0,
+    //likes = 0,
+    //shares = 0,
+    //views = 0,
     coords = null,
     attachment = null
 )

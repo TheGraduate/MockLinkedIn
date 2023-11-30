@@ -10,13 +10,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.mocklinkedin.adapter.JobsAdapter
+import com.example.mocklinkedin.adapter.OnInteractionListenerJobs
 import com.example.mocklinkedin.databinding.FragmentProfileBinding
+import com.example.mocklinkedin.dto.Job
+import com.example.mocklinkedin.viewmodel.JobViewModel
 
 class ProfileFragment : Fragment() {
 
     private var avatarImageView: ImageButton? = null
+
+    private val viewModel: JobViewModel by viewModels(
+        ownerProducer = ::requireParentFragment
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +39,19 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
+
+        val adapter = JobsAdapter (object : OnInteractionListenerJobs {
+            override fun onRemoveJob(job: Job) {
+                viewModel.removeById(job.id)
+            }
+        })
+
+        binding.list.adapter = adapter
+        viewModel.data.observe(viewLifecycleOwner) { jobs ->
+            adapter.submitList(jobs.objects)
+        }
+
+
 
         avatarImageView = binding.avatarImageView
         val nameEditText = binding.NameEditText
@@ -51,6 +75,12 @@ class ProfileFragment : Fragment() {
             editor.apply()
         }
 
+        binding.newJobButton.setOnClickListener {
+            val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
+            actionBar?.setDisplayHomeAsUpEnabled(false)
+            val action = ProfileFragmentDirections.actionProfileFragmentToNewJobFragment()
+            requireParentFragment().findNavController().navigate(action)
+        }
         return binding.root
     }
 

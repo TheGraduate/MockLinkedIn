@@ -48,7 +48,6 @@ class EventsFragment : Fragment() {
             }
 
             override fun onRemoveEvent(event: Event) {
-
                 viewModel.removeEventById(event.id)
             }
 
