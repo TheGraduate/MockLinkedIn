@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,11 +16,17 @@ import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.mocklinkedin.R
 import com.example.mocklinkedin.databinding.FragmentRegistrationBinding
+import com.example.mocklinkedin.viewmodel.RegistrationViewModel
 import com.example.mocklinkedin.viewmodel.UserViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class RegistrationFragment : Fragment() {
+    private val viewModelReg: RegistrationViewModel by viewModels(
+        ownerProducer = ::requireParentFragment
+    )
+
     private val viewModel: UserViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
@@ -37,19 +44,23 @@ class RegistrationFragment : Fragment() {
         val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(false)
 
-        val login = binding.editTextLogin.text.toString()
-        val firstName = binding.editTextFirstName.text.toString()
-        val password = binding.editTextPassword.text.toString()
+        val login = binding.editTextLogin
+        val password = binding.editTextPassword
+        val name = binding.editTextFirstName
+        val avatar = viewModel.photo.value?.file?.path
 
         binding.registrationButton.setOnClickListener {
-            if (login.isEmpty() || firstName.isEmpty() || password.isEmpty()) {
+            if (login.text.isEmpty() || name.text.isEmpty() || password.text.isEmpty()) {
                 Toast.makeText(
                     requireContext(),
                     "One of fields is empty",
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                viewModel.saveUser(login, firstName, password)
+                actionBar?.setDisplayHomeAsUpEnabled(false)
+                val activity = activity as? AppActivity
+                activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
+                viewModelReg.registrationUser(login.text.toString(),password.text.toString(),name.text.toString(), avatar)
                 findNavController().navigateUp()
             }
         }
@@ -71,7 +82,7 @@ class RegistrationFragment : Fragment() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             pickPhotoLauncher.launch(intent)
-            viewModel.saveUser(login, firstName, password)
+            //viewModel.saveUser(login, firstName, password)
         }
 
         return binding.root

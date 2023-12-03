@@ -64,7 +64,7 @@ class PostFragment : Fragment() {
         }
 
         activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-        activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+        //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.GONE
 
         viewModel.edited.observe(viewLifecycleOwner) {
             if (it.id == 0L) {

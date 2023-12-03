@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import com.example.mocklinkedin.auth.AppAuth
 import com.example.mocklinkedin.db.AppDb
 import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.dto.MediaUpload
@@ -19,7 +20,9 @@ import com.example.mocklinkedin.repository.PostRepository
 import com.example.mocklinkedin.repository.PostRepositoryImpl
 import com.example.mocklinkedin.util.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.io.File
@@ -44,9 +47,22 @@ private val noPhoto = PhotoModel()
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: PostRepository =
         PostRepositoryImpl(AppDb.getInstance(context = application).postDao())
-    val data: LiveData<FeedModel<Post>> = repository.data
+
+   /* val data: LiveData<FeedModel<Post>> = repository.data
         .map(::FeedModel)
-        .asLiveData(Dispatchers.Default)
+        .asLiveData(Dispatchers.Default)*/
+   @OptIn(ExperimentalCoroutinesApi::class)
+   val data: LiveData<FeedModel<Post>> = AppAuth.getInstance()
+       .authStateFlow
+       .flatMapLatest { (myId, _) ->
+           repository.data
+               .map { posts ->
+                   FeedModel(
+                       posts.map { it.copy(ownedByMe = it.authorId == myId) },
+                       posts.isEmpty()
+                   )
+               }
+       }.asLiveData(Dispatchers.Default)
     //val data = repository.getAll()
     //val edited = MutableLiveData(empty)
 

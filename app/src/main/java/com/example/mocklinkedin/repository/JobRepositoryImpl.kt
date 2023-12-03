@@ -3,7 +3,6 @@ package com.example.mocklinkedin.repository
 import android.util.Log
 import com.example.mocklinkedin.api.JobsApi
 import com.example.mocklinkedin.dao.JobDao
-import com.example.mocklinkedin.dto.Job
 import com.example.mocklinkedin.entity.JobEntity
 import com.example.mocklinkedin.entity.toDto
 import com.example.mocklinkedin.entity.toEntity
@@ -23,12 +22,14 @@ class JobRepositoryImpl(private val dao: JobDao): JobRepository{
         try {
             val response = JobsApi.service.getAll()
             if (!response.isSuccessful) {
+                Log.e("JobRepositoryImpl", "Unsuccessful response: ${response.code()} - ${response.message()}")
                 throw ApiError(response.code(), response.message())
             }
 
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             dao.insert(body.toEntity())
         } catch (e: IOException) {
+
             throw NetworkError
         } catch (e: Exception) {
             Log.e("PostRepositoryImpl", "Exception: ${e.message}", e)
@@ -36,10 +37,16 @@ class JobRepositoryImpl(private val dao: JobDao): JobRepository{
         }
     }
 
-    override suspend fun save(job: Job) {
+    override suspend fun saveJob(
+        id: Int,
+        name: String,
+        position: String,
+        start: String?,
+        finish: String?
+    ) {
 
         try {
-            val response = JobsApi.service.save(job)
+            val response = JobsApi.service.saveJob(id, name, position, start, finish)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }

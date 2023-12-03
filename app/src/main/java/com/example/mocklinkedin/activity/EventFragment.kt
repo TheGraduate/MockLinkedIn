@@ -30,7 +30,7 @@ class EventFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentEventBinding.inflate(inflater, container, false)
         val viewHolder = EventViewHolder(binding.eventCard, object : OnInteractionListenerEvents {
             override fun onEditEvent(event: Event) {
@@ -62,7 +62,7 @@ class EventFragment : Fragment() {
         }
 
         activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-        activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+        //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.GONE
 
         viewModel.edited.observe(viewLifecycleOwner) {
             if (it.id == 0L) {

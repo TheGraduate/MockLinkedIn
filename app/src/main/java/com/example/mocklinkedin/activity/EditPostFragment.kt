@@ -20,7 +20,6 @@ import com.example.mocklinkedin.R
 import com.example.mocklinkedin.databinding.FragmentEditPostBinding
 import com.example.mocklinkedin.dto.Geo
 import com.example.mocklinkedin.util.AndroidUtils
-import com.example.mocklinkedin.util.StringArg
 import com.example.mocklinkedin.viewmodel.PostViewModel
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -92,7 +91,7 @@ class EditPostFragment: Fragment() {
             actionBar?.setDisplayHomeAsUpEnabled(true)
             val activity = activity as? AppActivity
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
-            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.VISIBLE
+            //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.VISIBLE
         }
         return binding.root
     }

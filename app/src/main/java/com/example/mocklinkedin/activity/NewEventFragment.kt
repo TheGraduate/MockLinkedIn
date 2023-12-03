@@ -158,7 +158,7 @@ class NewEventFragment: Fragment() {
             actionBar?.setDisplayHomeAsUpEnabled(false)
             val activity = activity as? AppActivity
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
-            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.VISIBLE
+            //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.VISIBLE
         }
         return binding.root
 

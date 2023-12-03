@@ -8,11 +8,16 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mocklinkedin.R
 import com.example.mocklinkedin.databinding.FragmentHomeBinding
+import com.example.mocklinkedin.viewmodel.AuthViewModel
 
 class HomeFragment : Fragment() {
+    private val viewModel: AuthViewModel by viewModels(
+       // ownerProducer = ::requireParentFragment
+    )
     private companion object {
         const val POSTS_TAG = "POSTS_TAG"
         const val EVENTS_TAG = "EVENTS_TAG"
@@ -32,23 +37,32 @@ class HomeFragment : Fragment() {
         val bottomNavigationView = binding.includeBottomNavigationMenu.root
         val actionBar = (activity as AppCompatActivity).supportActionBar
         val profileButton = activity?.findViewById<ImageView>(R.id.profile)
-        val enterExitButton = activity?.findViewById<ImageView>(R.id.enterExit)
+        //val enterButton = activity?.findViewById<ImageView>(R.id.log_in)
+        //val exitButton = activity?.findViewById<ImageView>(R.id.log_out)
 
         profileButton?.setOnClickListener {
-            enterExitButton?.visibility = View.GONE
+            //enterButton?.visibility = View.GONE
             it.visibility = View.GONE
             actionBar?.setDisplayHomeAsUpEnabled(true)
             val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
             requireParentFragment().findNavController().navigate(action)
         }
 
-        enterExitButton?.setOnClickListener{
+        /*enterButton?.setOnClickListener{
+            AppAuth.getInstance().setAuth(5, "x-token")
             profileButton?.visibility = View.GONE
             it.visibility = View.GONE
+            exitButton?.visibility = View.GONE
             actionBar?.setDisplayHomeAsUpEnabled(true)
             val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
             requireParentFragment().findNavController().navigate(action)
         }
+
+        exitButton?.setOnClickListener{
+            val fragmentManager = requireParentFragment()
+            val dialogFragment = AuthAskFragment()
+            dialogFragment.show(fragmentManager.parentFragmentManager, "my_ask_fragment_tag")
+        }*/
 
         if (childFragmentManager.findFragmentById(R.id.nav_host_home) == null) {
             loadFragment(POSTS_TAG) { FeedFragment() }
@@ -77,6 +91,19 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+   /* override fun onResume() {
+        super.onResume()
+        val enterButton = activity?.findViewById<ImageView>(R.id.log_in)
+        val exitButton = activity?.findViewById<ImageView>(R.id.log_out)
+        if (viewModel.authenticated) {
+            enterButton?.visibility = View.VISIBLE
+            exitButton?.visibility = View.GONE
+        } else {
+            enterButton?.visibility = View.GONE
+            exitButton?.visibility = View.VISIBLE
+        }
+    }*/
     private fun loadFragment(tag: String, fragmentFactory: () -> Fragment) {
         val cachedFragment = childFragmentManager.findFragmentByTag(tag)
         val currentFragment = childFragmentManager.findFragmentById(R.id.nav_host_home)

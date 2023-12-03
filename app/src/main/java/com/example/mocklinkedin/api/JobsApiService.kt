@@ -6,8 +6,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -23,14 +24,24 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface JobsApiService {
-    @GET("jobs")
+    @GET("my/jobs")
     suspend fun getAll(): Response<List<Job>>
 
-    @GET("jobs/{id}")
+    @GET("my/jobs/{id}")
     suspend fun getById(@Path("id") id: Long): Response<Job>
 
-    @POST("jobs")
-    suspend fun save(@Body job: Job): Response<Job>
+   /* @POST("jobs")
+    suspend fun save(@Body job: Job): Response<Job>*/
+
+    @FormUrlEncoded
+    @POST("my/jobs")
+    suspend fun saveJob(
+        @Field("id") id: Int,
+        @Field("name") name: String,
+        @Field("position") position: String,
+        @Field("start") start: String?,
+        @Field("finish") finish: String?
+    ): Response<Job>
 
     @DELETE("jobs/{id}")
     suspend fun removeById(@Path("id") id: Long): Response<Unit>

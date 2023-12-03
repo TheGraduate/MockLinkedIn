@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.mocklinkedin.db.AppDb
-import com.example.mocklinkedin.dto.MediaUpload
 import com.example.mocklinkedin.dto.User
 import com.example.mocklinkedin.model.FeedModel
 import com.example.mocklinkedin.model.FeedModelState
@@ -65,7 +64,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val photo: LiveData<PhotoModel>
         get() = _photo
 
-     fun getAllUsers() {
+    init {
+        loadUsers()
+    }
+
+     fun loadUsers() {
          viewModelScope.launch {
              try {
                  _dataState.value = FeedModelState(loading = true)
@@ -81,7 +84,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _photo.value = PhotoModel(uri, file)
     }
     // fun getUser(): LiveData<User>
-     fun saveUser(username: String, firstName: String, password: String) {
+    /* fun saveUser(username: String, firstName: String, password: String) {
         edited.value?.let {
             _userCreated.value = Unit
             viewModelScope.launch {
@@ -101,9 +104,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
         edited.value = empty
         _photo.value = noPhoto
-     }
+     }*/
 
-    fun authenticateUser(username: String, password: String): Boolean {
+    /*fun authenticateUser(username: String, password: String): Boolean {
         var isAuthenticated = false
         viewModelScope.launch {
             try {
@@ -116,5 +119,5 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         return isAuthenticated
-    }
+    }*/
 }

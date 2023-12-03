@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/user_name"
-                android:autofillHints="@string/user_name"
+
                 android:inputType="text" />
 
             <EditText
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login"
-                android:autofillHints="@string/login"
+
                 android:inputType="text" />
 
             <EditText
@@ -49,8 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:hint="@string/passwordHint"
-                android:autofillHints="@string/passwordHint"
+                android:hint="@string/password_hint"
+
                 android:inputType="textPassword" />
 
             <Button

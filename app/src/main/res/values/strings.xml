@@ -47,18 +47,18 @@
     <!--<string username="lastNameString">Lastname</string>-->
 
     <!--<string username="birthDateString">Birth date</string>-->
-    <string name="registrationSuggestion">Don\'t you have an account? You can register here.</string>
+    <string name="registration_suggestion">Don\'t you have an account? You can register here.</string>
     <string name="registration">Registration</string>
     <string name="loginTitle">Login</string>
-    <string name="registrationTitle">Registration</string>
+    <string name="registration_title">Registration</string>
 
     <string name="loginHint">Login</string>
-    <string name="passwordHint">Password</string>
+    <string name="password_hint">Password</string>
 
-    <string name="enterButton">Enter</string>
+    <string name="enter_button">Enter</string>
     <!--<string username="username">Name</string>-->
     <!--<string username="lastName">Lastname</string>-->
-    <string name="existUser">User not found</string>
+    <string name="exist_user">User not found</string>
     <string name="empty_posts">Empty</string>
     <string name="show_new_posts">New posts</string>
     <string name="error_loading">Loading error</string>
@@ -71,4 +71,12 @@
     <string name="job">Job:</string>
     <string name="standart_geolocation">0.0 0.0</string>
     <string name="new_job">Add</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_out">Sign out</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="suggest_authorization">You want authorization?</string>
 </resources>

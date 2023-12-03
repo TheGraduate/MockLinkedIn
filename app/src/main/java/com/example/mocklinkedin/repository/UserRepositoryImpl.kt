@@ -4,7 +4,6 @@ import com.example.mocklinkedin.api.UsersApi
 import com.example.mocklinkedin.dao.UserDao
 import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
-import com.example.mocklinkedin.dto.User
 import com.example.mocklinkedin.entity.UserEntity
 import com.example.mocklinkedin.entity.toDto
 import com.example.mocklinkedin.entity.toEntity
@@ -16,6 +15,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import java.io.IOException
 
@@ -76,7 +76,7 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
         }
     }
 
-    override suspend fun saveUser(login: String, name: String, password: String) {
+    /*override suspend fun saveUser(login: String, name: String, password: String) {
         try {
             val response = UsersApi.service.registration(login, name, password)
             if (!response.isSuccessful) {
@@ -91,9 +91,9 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
             throw UnknownError()
         }
 
-    }
+    }*/
 
-    override suspend fun registrationUser(login: String, name: String, password: String, upload: MediaUpload): Response<User> {
+  /*  override suspend fun registrationUser(login: String, name: String, password: String, upload: MediaUpload): Response<User> {
         try {
             val response = UsersApi.service.registration(login, password, name)
             if (!response.isSuccessful) {
@@ -116,6 +116,35 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
 
             val authenticatedUser = response.body() ?: throw ApiError(response.code(), response.message())
             return authenticatedUser.login == login && authenticatedUser.password == password
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }*/
+
+    override suspend fun updateUser(login: String, pass: String): Response<ResponseBody> {
+        try {
+            return UsersApi.service.updateUser(login, pass)
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }
+
+    override suspend fun registrationUser(
+        login: String,
+        pass: String,
+        name: String,
+        avatar: String?
+    ): Response<ResponseBody> {
+        try {
+            val response = UsersApi.service.registrationUser(login, pass, name, avatar)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            return UsersApi.service.registrationUser(login, pass, name, avatar)
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {

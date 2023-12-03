@@ -6,6 +6,12 @@ import kotlinx.coroutines.flow.Flow
 interface JobRepository {
     val data: Flow<List<Job>>
     suspend fun getAll()
-    suspend fun save(job: Job)
+    suspend fun saveJob(
+        id: Int,
+        name: String,
+        position: String,
+        start: String?,
+        finish: String?
+    )
     suspend fun removeById(id: Long)
 }

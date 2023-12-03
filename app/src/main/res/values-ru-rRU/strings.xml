@@ -43,16 +43,16 @@
    <!-- <string username="birthDateString">Дата рождения</string>-->
 
     <string name="save_changes">Сохранить изменения</string>
-    <string name="registrationSuggestion">У вас нет аккаунта? Вы можете зарегистрироваться здесь.</string>
+    <string name="registration_suggestion">У вас нет аккаунта? Вы можете зарегистрироваться здесь.</string>
     <string name="registration">Регистрация</string>
     <string name="loginTitle">Вход</string>
-    <string name="registrationTitle">Регистрация</string>
+    <string name="registration_title">Регистрация</string>
 
     <string name="loginHint">Логин</string>
-    <string name="passwordHint">Пароль</string>
+    <string name="password_hint">Пароль</string>
 
-    <string name="enterButton">Войти</string>
-    <string name="existUser">Пользователь не найден</string>
+    <string name="enter_button">Войти</string>
+    <string name="exist_user">Пользователь не найден</string>
     <string name="empty_posts">Посты отсутствуют</string>
     <string name="show_new_posts">Новые посты</string>
     <string name="error_loading">Ошибка загрузки</string>
@@ -64,4 +64,12 @@
     <string name="job">Работа:</string>
     <string name="standart_geolocation">0.0 0.0</string>
     <string name="new_job">Добавить</string>
+
+    <string name="sign_in">Вход</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_out">Выход</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="are_you_sure">Вы уверены?</string>
+    <string name="suggest_authorization">Вы хотите авторизироваться?</string>
 </resources>

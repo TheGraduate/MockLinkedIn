@@ -11,6 +11,7 @@ data class Post(
         val content: String,
         val published: Date,
         var likedByMe: Boolean,
+        val ownedByMe: Boolean = false,
         //var likes: Int?,
         //var shares: Int?,
         //var views: Int?,

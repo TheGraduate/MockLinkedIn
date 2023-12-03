@@ -83,7 +83,7 @@ class EventsFragment : Fragment() {
             val sendPostText = Bundle()
             sendPostText.putString(Intent.EXTRA_TEXT, event.content)
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+            //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.GONE
             requireParentFragment().findNavController().navigate(R.id.action_homeFragment_to_editPostFragment, sendPostText)
         }
 
@@ -93,7 +93,7 @@ class EventsFragment : Fragment() {
             val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setDisplayHomeAsUpEnabled(true)
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+            //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.GONE
         }
 
         return binding.root

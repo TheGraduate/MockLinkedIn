@@ -1,7 +1,6 @@
 package com.example.mocklinkedin.viewmodel
 
 import android.app.Application
-import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -57,12 +56,18 @@ class JobViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun save() {
+    fun saveJob(
+        id: Int,
+        name: String,
+        position: String,
+        start: String?,
+        finish: String?
+    ) {
         edited.value?.let {
             _jobCreated.value = Unit
             viewModelScope.launch {
                 try {
-                    repository.save(it)
+                    repository.saveJob(id, name, position, start, finish)
                     _dataState.value = FeedModelState()
                 } catch (e: Exception) {
                     _dataState.value = FeedModelState(error = true)
@@ -76,14 +81,14 @@ class JobViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = job
     }
 
-    fun changeContent(companyName: String, position: String, workStart: EditText, workFinish: EditText) {
+    fun changeContent(companyName: String, position: String, workStart: String, workFinish: String) {
         val companyNameText = companyName.trim()
         val positionText = position.trim()
 
         if (edited.value?.company == companyNameText &&
             edited.value?.position == positionText &&
-            edited.value?.workStart == workStart &&
-            edited.value?.workFinish == workFinish
+            edited.value?.workStart.toString() == workStart &&
+            edited.value?.workFinish.toString() == workFinish
             ) {
             return
         }

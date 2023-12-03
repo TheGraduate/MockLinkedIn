@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mocklinkedin.auth.AppAuth
 import com.example.mocklinkedin.databinding.FragmentFeedBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -31,6 +32,7 @@ class FeedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val fragmentManager = childFragmentManager
         val binding = FragmentFeedBinding.inflate(
             inflater,
             container,
@@ -43,10 +45,16 @@ class FeedFragment : Fragment() {
             }
 
             override fun onLike(post: Post) {
-                if (post.likedByMe) {
-                    viewModel.unlikeById(post.id)
+                if (AppAuth.getInstance().authStateFlow.value.id != 0L
+                    && AppAuth.getInstance().authStateFlow.value.token != null) {
+                    if (post.likedByMe) {
+                        viewModel.unlikeById(post.id)
+                    } else {
+                        viewModel.likeById(post.id)
+                    }
                 } else {
-                    viewModel.likeById(post.id)
+                    val dialogFragment = AuthSuggestionFragment()
+                    dialogFragment.show(fragmentManager, "my_suggestion_fragment_tag")
                 }
             }
 
@@ -114,18 +122,26 @@ class FeedFragment : Fragment() {
             val sendPostText = Bundle()
             sendPostText.putString(Intent.EXTRA_TEXT, post.content)
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+            //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.GONE
             requireParentFragment().findNavController().navigate(R.id.action_homeFragment_to_editPostFragment, sendPostText)
         }
 
         binding.floatingNewPostButton.setOnClickListener {
             //requireParentFragment().findNavController().navigate(R.id.action_homeFragment_to_newPostFragment)
-            val action = HomeFragmentDirections.actionHomeFragmentToNewPostFragment()
-            requireParentFragment().findNavController().navigate(action)
-            val actionBar = (activity as AppCompatActivity).supportActionBar
-            actionBar?.setDisplayHomeAsUpEnabled(true)
-            activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
-            activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE
+            if (AppAuth.getInstance().authStateFlow.value.id != 0L
+                && AppAuth.getInstance().authStateFlow.value.token != null) {
+                val action = HomeFragmentDirections.actionHomeFragmentToNewPostFragment()
+                requireParentFragment().findNavController().navigate(action)
+                val actionBar = (activity as AppCompatActivity).supportActionBar
+                actionBar?.setDisplayHomeAsUpEnabled(true)
+                activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.GONE
+                //activity?.findViewById<ImageView>(R.id.log_in)?.visibility = View.GONE
+            } else {
+
+                val dialogFragment = AuthSuggestionFragment()
+                dialogFragment.show(fragmentManager, "my_suggest_fragment_tag")
+            }
+
         }
         return binding.root
     }

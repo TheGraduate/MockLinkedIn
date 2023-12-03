@@ -56,7 +56,7 @@ class PostViewHolder(
             //share.text = post.shares?.let { CalculateParametrs(it) }
             //viewCount.text = post.views?.let { CalculateParametrs(it) }
             //avatar.loadCircleCrop("BASE_URL${post.authorAvatar}")
-            geo.text = "${post.coords?.latitude.toString()} : ${post.coords?.longitude.toString()}"
+            "${post.coords?.latitude.toString()} : ${post.coords?.longitude.toString()}".also { geo.text = it }
 
             if (post.attachment == null) {
                 attachmentImage.visibility = View.GONE
@@ -70,6 +70,8 @@ class PostViewHolder(
                 .circleCrop()
                 .timeout(30_000)
                 .into(binding.avatar)
+
+            menu.visibility = if (post.ownedByMe) View.VISIBLE else View.INVISIBLE
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {

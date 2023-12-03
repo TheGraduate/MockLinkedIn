@@ -41,6 +41,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        /*debug {
+            manifestPlaceholders.usesCleartextTraffic = true
+            buildConfigField( "String", "BASE_URL", "\"https://netomedia.ru/api/\"")
+        }*/
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -78,7 +82,7 @@ dependencies {
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.0")
+    implementation("androidx.activity:activity-compose:1.8.1")
     implementation(platform("androidx.compose:compose-bom:2023.10.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -97,9 +101,11 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
-    implementation ("androidx.room:room-runtime:2.6.0")
-    implementation("androidx.room:room-ktx:2.6.0") // Нужно для использования suspend
-    kapt("androidx.room:room-compiler:2.6.0") // Для генерации кода
+    implementation ("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.0")
+
+    implementation ("com.google.firebase:firebase-crashlytics-buildtools:2.9.9")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

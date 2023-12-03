@@ -53,7 +53,7 @@ class EventViewHolder(
             //like.text = event.likes?.let { CalculateParametrs(it) }
             //share.text = event.shares?.let { CalculateParametrs(it) }
             //viewCount.text = event.views?.let { CalculateParametrs(it) }
-            geo.text = "${event.coords?.latitude.toString()} : ${event.coords?.longitude.toString()}"
+            "${event.coords?.latitude.toString()} : ${event.coords?.longitude.toString()}".also { geo.text = it }
 
             Glide.with(binding.avatar)
                 .load(event.authorAvatar)

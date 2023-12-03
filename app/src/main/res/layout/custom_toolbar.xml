@@ -17,12 +17,19 @@
             android:layout_gravity="start"
             android:src="@drawable/baseline_account_circle_24" />
 
-        <ImageView
-            android:id="@+id/enterExit"
+      <!--  <ImageView
+            android:id="@+id/log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_horizontal"
             android:src="@drawable/baseline_login_24" />
+
+        <ImageView
+            android:id="@+id/log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_horizontal"
+            android:src="@drawable/baseline_logout_48" />-->
 
         <!--  <Button
             android:id="@+id/button"
