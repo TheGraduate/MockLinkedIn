@@ -1,6 +1,7 @@
 package com.example.mocklinkedin.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -34,10 +35,12 @@ class JobViewHolder(
 
     fun bind(job: Job) {
         binding.apply {
-            companyName.text = job.company
+            companyName.text = job.name
             positionAtCompany.text = job.position
-            dateStartOfWork.text = job.workStart.toString()
-            dateEndOfWork.text =job.workFinish.toString()
+            dateStartOfWork.text = job.start.toString()
+            dateEndOfWork.text = job.finish.toString()
+            companyLink.text = job.link
+
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -53,6 +56,9 @@ class JobViewHolder(
                     }
                 }.show()
             }
+
+            //menu.visibility = if (job.ownedByMe) View.VISIBLE else View.INVISIBLE
+
         }
     }
 }

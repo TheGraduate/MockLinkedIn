@@ -20,10 +20,11 @@ import java.util.Date
 
 private val empty = Job(
     id = 0,
-    company = "",
+    name = "",
     position = "",
-    workStart = Date(),
-    workFinish = Date()
+    start = Date(),
+    finish = Date(),
+    link = ""
 )
 
 class JobViewModel(application: Application) : AndroidViewModel(application) {
@@ -49,7 +50,7 @@ class JobViewModel(application: Application) : AndroidViewModel(application) {
     fun loadJobs() = viewModelScope.launch {
         try {
             _dataState.value = FeedModelState(loading = true)
-            repository.getAll()
+            repository.getAllJobs()
             _dataState.value = FeedModelState()
         } catch (e: Exception) {
             _dataState.value = FeedModelState(error = true)
@@ -61,13 +62,14 @@ class JobViewModel(application: Application) : AndroidViewModel(application) {
         name: String,
         position: String,
         start: String?,
-        finish: String?
+        finish: String?,
+        link: String
     ) {
         edited.value?.let {
             _jobCreated.value = Unit
             viewModelScope.launch {
                 try {
-                    repository.saveJob(id, name, position, start, finish)
+                    repository.saveJob(id, name, position, start, finish, link)
                     _dataState.value = FeedModelState()
                 } catch (e: Exception) {
                     _dataState.value = FeedModelState(error = true)
@@ -81,19 +83,26 @@ class JobViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = job
     }
 
-    fun changeContent(companyName: String, position: String, workStart: String, workFinish: String) {
+    fun changeContent(
+        companyName: String,
+        position: String,
+        workStart: String,
+        workFinish: String,
+        companyLink: String
+    ) {
         val companyNameText = companyName.trim()
         val positionText = position.trim()
 
-        if (edited.value?.company == companyNameText &&
+        if (edited.value?.name == companyNameText &&
             edited.value?.position == positionText &&
-            edited.value?.workStart.toString() == workStart &&
-            edited.value?.workFinish.toString() == workFinish
+            edited.value?.start.toString() == workStart &&
+            edited.value?.finish.toString() == workFinish &&
+            edited.value?.link == companyLink
             ) {
             return
         }
 
-        edited.value = edited.value?.copy(company = companyNameText, position = positionText, workStart = Date(), workFinish = Date())
+        edited.value = edited.value?.copy(name = companyNameText, position = positionText, start = Date(), finish = Date(), link = companyLink)
     }
 
     fun removeById(id: Long) {

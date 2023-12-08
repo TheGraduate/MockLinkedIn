@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mocklinkedin.databinding.UserCardBinding
+import com.example.mocklinkedin.dto.Post
 import com.example.mocklinkedin.dto.User
 
 interface OnInteractionListenerUsers {
-
+    fun onUser(user: User) {}
 }
 
 class UsersAdapter(
@@ -36,7 +37,7 @@ class UserViewHolder(
         binding.apply {
 
             login.text = user.login
-            name.text = user.username
+            //name.text = user.name
 
             Glide.with(binding.userAvatar)
                 .load(user.avatar)
@@ -57,6 +58,10 @@ class UserViewHolder(
                     }
                 }.show()
             }*/
+
+            //root.setOnClickListener {
+                //OnInteractionListenerUsers.onUser(user)
+            //}
         }
     }
 }

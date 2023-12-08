@@ -26,7 +26,7 @@ import com.example.mocklinkedin.constants.Constants.Companion.BASE_URL
 }*/
 
 private val okhttp = OkHttpClient.Builder()
-    //.addInterceptor(logging)
+    .addInterceptor(logging)
     .build()
 
 private val retrofit = Retrofit.Builder()

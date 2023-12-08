@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.Flow
 
        /* @Transaction
         @Insert(onConflict = OnConflictStrategy.REPLACE)
-        suspend fun registration(login: String, password: String, username: String)*/
+        suspend fun registration(login: String, password: String, name: String)*/
 
 
     }

@@ -35,12 +35,12 @@
 
     <string name="login_string">Логин</string>
     <string name="login">Логин</string>
-    <!--<string username="last_name">Фамилия</string>-->
-    <!--<string username="birth_date">Дата рождения</string>-->
+    <!--<string name="last_name">Фамилия</string>-->
+    <!--<string name="birth_date">Дата рождения</string>-->
     <string name="registration_date_string">Дата регистрации</string>
     <string name="registration_date">Дата регистрации</string>
 
-   <!-- <string username="birthDateString">Дата рождения</string>-->
+   <!-- <string name="birthDateString">Дата рождения</string>-->
 
     <string name="save_changes">Сохранить изменения</string>
     <string name="registration_suggestion">У вас нет аккаунта? Вы можете зарегистрироваться здесь.</string>
@@ -72,4 +72,5 @@
     <string name="no">Нет</string>
     <string name="are_you_sure">Вы уверены?</string>
     <string name="suggest_authorization">Вы хотите авторизироваться?</string>
+    <string name="companyLink">Ссылка на сайт компании</string>
 </resources>

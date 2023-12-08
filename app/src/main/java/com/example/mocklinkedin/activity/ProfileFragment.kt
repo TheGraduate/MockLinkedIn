@@ -51,8 +51,6 @@ class ProfileFragment : Fragment() {
             adapter.submitList(jobs.objects)
         }
 
-
-
         avatarImageView = binding.avatarImageView
         val nameEditText = binding.NameEditText
         val loginEditText = binding.loginEditText

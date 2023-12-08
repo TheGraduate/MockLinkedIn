@@ -23,8 +23,8 @@ import java.io.File
 private val empty = User(
     id = 0,
     login = "",
-    username = "",
-    password = "",
+    name = "",
+    //password = "",
     //registrationDate = 0,
     avatar = null
 )
@@ -84,15 +84,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _photo.value = PhotoModel(uri, file)
     }
     // fun getUser(): LiveData<User>
-    /* fun saveUser(username: String, firstName: String, password: String) {
+    /* fun saveUser(name: String, firstName: String, password: String) {
         edited.value?.let {
             _userCreated.value = Unit
             viewModelScope.launch {
                 try {
                     when(_photo.value) {
-                        noPhoto -> repository.saveUser(username,firstName,password)
+                        noPhoto -> repository.saveUser(name,firstName,password)
                         else -> _photo.value?.file?.let { file ->
-                            repository.registrationUser(username, firstName, password, MediaUpload(file))
+                            repository.registrationUser(name, firstName, password, MediaUpload(file))
                         }
                     }
 
@@ -106,13 +106,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _photo.value = noPhoto
      }*/
 
-    /*fun authenticateUser(username: String, password: String): Boolean {
+    /*fun authenticateUser(name: String, password: String): Boolean {
         var isAuthenticated = false
         viewModelScope.launch {
             try {
                 _dataState.value = FeedModelState(loading = true)
-                isAuthenticated = repository.authUser(username,password)
-                _userAuthenticated.value = repository.authUser(username,password)
+                isAuthenticated = repository.authUser(name,password)
+                _userAuthenticated.value = repository.authUser(name,password)
                 _dataState.value = FeedModelState()
             } catch (e: Exception) {
                 _dataState.value = FeedModelState(error = true)

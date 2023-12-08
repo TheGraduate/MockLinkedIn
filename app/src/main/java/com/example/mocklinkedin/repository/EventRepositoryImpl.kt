@@ -39,7 +39,6 @@ class EventRepositoryImpl(
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
-
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             dao.insert(body.toEntity())
         } catch (e: IOException) {
@@ -168,7 +167,7 @@ class EventRepositoryImpl(
 
     /*    override fun upload(upload: MediaUpload): Media {
             val media = MultipartBody.Part.createFormData(
-                "file", upload.file.username, upload.file.asRequestBody()
+                "file", upload.file.name, upload.file.asRequestBody()
             )
 
         }*/

@@ -65,6 +65,19 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
 
+    <EditText
+        android:id="@+id/companyLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/date_end_of_work"
+        android:autofillHints="@string/position_at_company"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/divider"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@+id/dateEndOfWork"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ImageView
         android:id="@+id/ok"
         android:layout_width="wrap_content"

@@ -22,7 +22,7 @@ import com.example.mocklinkedin.entity.UserEntity
         EventEntity::class,
         JobEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

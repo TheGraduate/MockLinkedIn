@@ -47,8 +47,8 @@ class UsersListFragment : Fragment() {
             adapter.submitList(users.objects)
         }
 
-        viewModel.edited.observe(viewLifecycleOwner) { event ->
-            if (event.id == 0L) {
+        viewModel.edited.observe(viewLifecycleOwner) { user ->
+            if (user.id == 0L) {
                 return@observe
             }
         }

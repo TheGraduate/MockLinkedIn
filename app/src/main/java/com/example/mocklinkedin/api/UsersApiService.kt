@@ -21,7 +21,7 @@ import retrofit2.http.Path
 
 //private const val BASE_URL = "https://netomedia.ru" //"${BuildConfig.BASE_URL}/api/slow/"
 
-private val logging = HttpLoggingInterceptor().apply {
+val logging = HttpLoggingInterceptor().apply {
     //if (BuildConfig.DEBUG) {
         level = HttpLoggingInterceptor.Level.BODY
     //}

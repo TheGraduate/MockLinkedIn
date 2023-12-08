@@ -1,6 +1,5 @@
 package com.example.mocklinkedin.entity
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mocklinkedin.dto.User
@@ -10,19 +9,16 @@ data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val login: String,
-    var username: String,
-    val password: String,
-    //val registrationDate: Long,
-    @Embedded
-    var avatar: AttachmentEmbeddable?,
+    var name: String,
+    //val password: String?,
+    var avatar: String?,
 ) {
     fun toDto() = User(
         id,
         login,
-        username = "Username",
-        password,
-        //registrationDate,
-        avatar?.toDto()
+        name = "Username",
+        //password,
+        avatar
     )
 
     companion object {
@@ -30,11 +26,10 @@ data class UserEntity(
             UserEntity(
                 dto.id,
                 dto.login,
-                dto.username,
-                dto.password,
-                //dto.registrationDate,
-                AttachmentEmbeddable.fromDto(dto.avatar))
-
+                dto.name,
+                //dto.password,
+                dto.avatar
+            )
     }
 }
 

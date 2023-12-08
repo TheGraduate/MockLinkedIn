@@ -38,6 +38,7 @@ class NewJobFragment: Fragment() {
         val positionAtCompany = binding.positionAtCompany.text.toString()
         val dateStartOfWork = binding.dateStartOfWork.text.toString()
         val dateEndOfWork = binding.dateEndOfWork.text.toString()
+        val companyLink = binding.companyLink.text.toString()
 
         fragmentBinding = binding
         arguments?.textArg
@@ -49,7 +50,8 @@ class NewJobFragment: Fragment() {
                 companyName,
                 positionAtCompany,
                 dateStartOfWork,
-                dateEndOfWork
+                dateEndOfWork,
+                companyLink
             )
             /*val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
             actionBar?.setDisplayHomeAsUpEnabled(false)
@@ -57,7 +59,7 @@ class NewJobFragment: Fragment() {
             activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
             activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.VISIBLE
             activity?.findViewById<ImageView>(R.id.enterExit)?.visibility = View.GONE*/
-            viewModel.saveJob(id, companyName, positionAtCompany, dateStartOfWork, dateEndOfWork)
+            viewModel.saveJob(id, companyName, positionAtCompany, dateStartOfWork, dateEndOfWork, companyLink)
             AndroidUtils.hideKeyboard(requireView())
             findNavController().navigateUp()
         }

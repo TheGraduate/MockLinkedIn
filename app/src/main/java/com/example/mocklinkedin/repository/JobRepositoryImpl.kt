@@ -18,18 +18,17 @@ class JobRepositoryImpl(private val dao: JobDao): JobRepository{
         .map(List<JobEntity>::toDto)
         .flowOn(Dispatchers.Default)
 
-    override suspend fun getAll() {
+    override suspend fun getAllJobs() {
         try {
             val response = JobsApi.service.getAll()
             if (!response.isSuccessful) {
                 Log.e("JobRepositoryImpl", "Unsuccessful response: ${response.code()} - ${response.message()}")
                 throw ApiError(response.code(), response.message())
             }
-
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             dao.insert(body.toEntity())
         } catch (e: IOException) {
-
+            Log.e("PostRepositoryImpl", "Exception: ${e.message}", e)
             throw NetworkError
         } catch (e: Exception) {
             Log.e("PostRepositoryImpl", "Exception: ${e.message}", e)
@@ -42,11 +41,12 @@ class JobRepositoryImpl(private val dao: JobDao): JobRepository{
         name: String,
         position: String,
         start: String?,
-        finish: String?
+        finish: String?,
+        link: String
     ) {
 
         try {
-            val response = JobsApi.service.saveJob(id, name, position, start, finish)
+            val response = JobsApi.service.saveJob(id, name, position, start, finish, link)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }

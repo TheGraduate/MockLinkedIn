@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
+            app:constraint_referenced_ids="companyLink,positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
 
         <TextView
             android:id="@+id/companyName"
@@ -52,14 +52,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/job" />
 
+        <TextView
+            android:id="@+id/companyLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/companyLink"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/divider"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="@+id/divider"
+            app:layout_constraintTop_toBottomOf="@+id/dateEndOfWork"
+            app:layout_constraintVertical_bias="0.0" />
+
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateEndOfWork" />
+            app:layout_constraintTop_toBottomOf="@+id/companyLink" />
 
         <TextView
             android:id="@+id/positionAtCompany"
@@ -98,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="divider,positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
+            app:constraint_referenced_ids="companyLink,divider,positionAtCompany,dateStartOfWork,dateEndOfWork,companyName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

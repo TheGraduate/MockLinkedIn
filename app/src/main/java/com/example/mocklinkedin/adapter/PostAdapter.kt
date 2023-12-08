@@ -103,7 +103,7 @@ class PostViewHolder(
                 onInteractionListener.onPost(post)
             }
 
-           /* val url = "http://10.0.2.2:9999/avatars/{username}"
+           /* val url = "http://10.0.2.2:9999/avatars/{name}"
             Glide.with(binding.avatar)
                 .load(url)
                 .circleCrop()

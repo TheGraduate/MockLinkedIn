@@ -4,8 +4,9 @@ import java.util.Date
 
 data class Job(
     val id: Long,
-    val company: String,
+    val name: String,
     val position: String,
-    val workStart: Date,
-    val workFinish: Date,
+    val start: Date,
+    val finish: Date?,
+    val link: String?,
 )

@@ -9,28 +9,31 @@ import java.util.Date
 data class JobEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val company: String,
+    val name: String,
     val position: String,
-    val workStart: Long,
-    val workFinish: Long,
+    val start: Long,
+    val finish: Long?,
+    val link: String?,
 
 ) {
     fun toDto() = Job(
         id,
-        company ,
+        name ,
         position,
-        Date(workStart),
-        Date(workFinish)
+        Date(start),
+        finish?.let { Date(it) },
+        link
     )
 
     companion object {
         fun fromDto(dto: Job) =
             JobEntity(
                 dto.id,
-                dto.company ,
+                dto.name ,
                 dto.position,
-                dto.workStart.time,
-                dto.workFinish.time
+                dto.start.time,
+                dto.finish?.time,
+                dto.link
             )
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mocklinkedin.api
 
+import com.example.mocklinkedin.auth.AppAuth
 import com.example.mocklinkedin.constants.Constants
 import com.example.mocklinkedin.dto.Job
 import okhttp3.OkHttpClient
@@ -14,7 +15,16 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 private val okhttp = OkHttpClient.Builder()
-    //.addInterceptor(logging)
+    .addInterceptor(logging)
+    .addInterceptor { chain ->
+        AppAuth.getInstance().authStateFlow.value.token?.let { token ->
+            val newRequest = chain.request().newBuilder()
+                .addHeader("Authorization", token)
+                .build()
+            return@addInterceptor chain.proceed(newRequest)
+        }
+        chain.proceed(chain.request())
+    }
     .build()
 
 private val retrofit = Retrofit.Builder()
@@ -40,7 +50,8 @@ interface JobsApiService {
         @Field("name") name: String,
         @Field("position") position: String,
         @Field("start") start: String?,
-        @Field("finish") finish: String?
+        @Field("finish") finish: String?,
+        @Field("link") link: String?
     ): Response<Job>
 
     @DELETE("jobs/{id}")
