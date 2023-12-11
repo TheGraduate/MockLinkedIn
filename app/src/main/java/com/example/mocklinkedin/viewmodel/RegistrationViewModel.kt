@@ -13,6 +13,7 @@ import com.example.mocklinkedin.db.AppDb
 import com.example.mocklinkedin.model.FeedModelState
 import com.example.mocklinkedin.repository.UserRepository
 import com.example.mocklinkedin.repository.UserRepositoryImpl
+import com.example.mocklinkedin.util.SingleLiveEvent
 
 class RegistrationViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: UserRepository =
@@ -22,14 +23,22 @@ class RegistrationViewModel(application: Application) : AndroidViewModel(applica
     val dataState: LiveData<FeedModelState>
         get() = _dataState
 
-    fun updateUser(login: String, pass: String) {
+    private val _authSuccess = SingleLiveEvent<Unit>()
+    val authSuccess: LiveData<Unit>
+        get() = _authSuccess
+
+    fun updateUser(login: String, password: String) {
         viewModelScope.launch {
             try {
                 val gson = Gson()
-                val jsonObject = gson.fromJson(repository.updateUser(login, pass).body()?.string(), JsonObject::class.java)
+                val jsonObject = gson.fromJson(
+                    repository.updateUser(login, password).body()?.toString(),
+                    JsonObject::class.java
+                )
                 val id = jsonObject.get("id").asLong
                 val token = jsonObject.get("token").asString
                 AppAuth.getInstance().setAuth(id,token)
+                _authSuccess.value = Unit
                 _dataState.value = FeedModelState()
             } catch (e: Exception) {
                 _dataState.value = FeedModelState(error = true)
@@ -37,11 +46,14 @@ class RegistrationViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    fun registrationUser(login: String, pass: String, name: String, avatar: String?) {
+    fun registrationUser(login: String, password: String, name: String, avatar: String?) {
         viewModelScope.launch {
             try {
                 val gson = Gson()
-                val jsonObject = gson.fromJson(repository.registrationUser (login, pass, name, avatar).body()?.string(), JsonObject::class.java)
+                val jsonObject = gson.fromJson(
+                    repository.registrationUser (login, password, name, avatar).body()?.string(),
+                    JsonObject::class.java
+                )
                 val id = jsonObject.get("id").asLong
                 val token = jsonObject.get("token").asString
                 AppAuth.getInstance().setAuth(id,token)

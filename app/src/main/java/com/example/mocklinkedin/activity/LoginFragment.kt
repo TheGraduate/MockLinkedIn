@@ -42,23 +42,29 @@ class LoginFragment : Fragment() {
         )
 
         val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-        val login = binding.editTextLogin.text.toString()
-        val password = binding.editTextPassword.text.toString()
+        //val login = binding.editTextLogin.text.toString()
+        //val password = binding.editTextPassword.text.toString()
 
 
         binding.loginButton.setOnClickListener {
             //if(viewModel.authenticateUser(login,password)) {
-                viewModelReg.updateUser(login, password)
-                actionBar?.setDisplayHomeAsUpEnabled(false)
-                val activity = activity as? AppActivity
-                activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
+            val login = binding.editTextLogin.text.toString()
+            val password = binding.editTextPassword.text.toString()
+            viewModelReg.updateUser(login, password)
+            actionBar?.setDisplayHomeAsUpEnabled(false)
+            val activity = activity as? AppActivity
+            activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
                 //activity?.findViewById<ImageView>(R.id.log_out)?.visibility = View.VISIBLE
-                findNavController().navigateUp()
+                //
                 //activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
                 //activity?.findViewById<ImageView>(R.id.profile)?.visibility = View.VISIBLE
             //} else {
                 //Toast.makeText(requireContext(), R.string.existUser, Toast.LENGTH_SHORT).show()
             //}
+        }
+
+        viewModelReg.authSuccess.observe(viewLifecycleOwner) {
+            findNavController().navigateUp()
         }
 
         binding.suggestRegistration.setOnClickListener {

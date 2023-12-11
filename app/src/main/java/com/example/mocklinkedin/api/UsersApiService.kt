@@ -3,6 +3,7 @@ package com.example.mocklinkedin.api
 import com.example.mocklinkedin.auth.AppAuth
 import com.example.mocklinkedin.constants.Constants.Companion.BASE_URL
 import com.example.mocklinkedin.dto.Media
+import com.example.mocklinkedin.dto.Token
 import com.example.mocklinkedin.dto.User
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -67,14 +68,14 @@ interface UsersApiService {
     @POST("users/authentication")
     suspend fun updateUser(
         @Field("login") login: String,
-        @Field("pass") pass: String
-    ): Response<ResponseBody>
+        @Field("password") pass: String
+    ): Response<Token>
 
     @FormUrlEncoded
     @POST("users/registration")
     suspend fun registrationUser(
         @Field("login") login: String,
-        @Field("pass") pass: String,
+        @Field("password") pass: String,
         @Field("name") name: String,
         @Field("file") avatar: String?
     ): Response<ResponseBody>

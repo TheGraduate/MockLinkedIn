@@ -4,6 +4,7 @@ import com.example.mocklinkedin.api.UsersApi
 import com.example.mocklinkedin.dao.UserDao
 import com.example.mocklinkedin.dto.Media
 import com.example.mocklinkedin.dto.MediaUpload
+import com.example.mocklinkedin.dto.Token
 import com.example.mocklinkedin.entity.UserEntity
 import com.example.mocklinkedin.entity.toDto
 import com.example.mocklinkedin.entity.toEntity
@@ -123,7 +124,7 @@ class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
         }
     }*/
 
-    override suspend fun updateUser(login: String, pass: String): Response<ResponseBody> {
+    override suspend fun updateUser(login: String, pass: String): Response<Token> {
         try {
             return UsersApi.service.updateUser(login, pass)
         } catch (e: IOException) {
